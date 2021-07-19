@@ -1,5 +1,6 @@
 // Model, will be fetched and populated by controller
 const filmsModel = {
+  baseURL: 'https://ghibliapi.herokuapp.com/',
   films: []
 }
 
@@ -21,8 +22,8 @@ const filmController = {
   createFilmsPage: function(films) {
     filmsView.init(films);
   },
-  getFilms: function(url) {
-    return fetch('https://ghibliapi.herokuapp.com/films', {
+  getFilms: function() {
+    return fetch(filmsModel.baseURL + 'films', {
       headers: {
         'Content-Type': 'application/json',
       }
@@ -32,8 +33,9 @@ const filmController = {
     e.preventDefault();
     // only react to clicks inside the li element
     if (e.target.nodeName === 'UL') return;
-    // TODO: load the film page
-    console.log("CONTROLLER VALUE: ", e);
+    // navigate to film.html with the film unique id as parameter
+    let url = 'film.html?id=' + e.target.dataset.filmid;
+    window.location.href = url;
   }
 }
 
