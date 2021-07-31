@@ -1,3 +1,6 @@
+import './style.css';
+
+
 // Model, use an object for each topic of information
 const filmModel = {
   baseURL: 'https://ghibliapi.herokuapp.com/',
@@ -190,7 +193,7 @@ const filmSpecies = {
       // list of eye colours
       p = cElem('P', "Eye Colours: ");
       specie.eye_colors.split(', ').forEach(color => {
-        li = cElem('LI', color);
+        let li = cElem('LI', color);
         ul.appendChild(li);
       });
       article.append(p, ul);
@@ -199,7 +202,7 @@ const filmSpecies = {
       p = cElem('P', "Hair Colours: ");
       ul = cElem('UL');
       specie.hair_colors.split(', ').forEach(color => {
-        li = cElem('LI', color);
+        let li = cElem('LI', color);
         ul.appendChild(li);
       });
       article.append(p, ul);

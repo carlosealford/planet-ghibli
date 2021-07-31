@@ -1,0 +1,178 @@
+body,
+section, article, div, nav, header, footer,
+h1, h2, h3, h4, h5,
+img, figure,
+ul, li
+p,
+a {
+  border: 0;
+  box-sizing: border-box;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+
+body {
+  --main-text-color: #285534;
+  --main-box-bg-color: #dceee1;
+  --main-base-color: #50A967;
+  --main-border-color: #285534;
+  background-color: #f4faf6;
+  color: #285534;
+}
+
+/**
+ * Color pallete
+ * Green
+ f4faf6 (lightest)
+ dceee1
+ b8dec2
+ 95cda4
+ 72bc85
+ 50A967 - 80, 169, 103 (base)
+ 48995e
+ 408853
+ 387749
+ 30663e
+ 285534 (darkest)
+
+ * blue
+ A3C7CF - 163, 199, 207 (lightest)
+ 6B9CA8 - 107, 156, 168
+ 447E8C - 68, 126, 140 (base)
+ 296674 - 41, 102, 116
+ 15505E - 21, 80, 94
+
+ * Font - architects daughter
+ <style>
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap');
+</style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
+
+font-family: 'Architects Daughter', cursive;
+
+ */
+
+/* site header */
+.pghi-site-header {
+  background: var(--main-box-bg-color);
+  border-bottom: 2px solid var(--main-border-color);
+}
+.pghi-site-header-wrapper {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  margin: 0 auto;
+  max-width: 768px;
+  padding: 8px;
+}
+.pghi-site-header-wrapper h3 {}
+
+/* site navigation */
+.pghi-site-nav {}
+.pghi-site-nav ul {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+}
+.pghi-site-nav__item {}
+.pghi-site-nav__item a {
+  color: var(--main-base-color);
+  display: block;
+  padding: 4px 8px;
+}
+.pghi-site-nav__item:not(.active) a {
+  transform: scale(.9);
+}
+
+/* footer */
+.pghi-site-footer {
+  background: var(--main-box-bg-color);
+  border-top: 2px solid var(--main-border-color);
+  height: 86px;
+  padding: 8px;
+  text-align: center;
+}
+.pghi-site-footer p {
+  line-height: 8px;
+}
+
+/* home basic layout */
+.pghi-home {}
+
+/* hero section */
+.pghi-hero__box {
+  background: var(--main-box-bg-color);
+  display: flex;
+  flex-flow: column wrap;
+}
+
+.pghi-hero__img {
+  height: 60vh;
+}
+.pghi-hero__img img {}
+
+.pghi-hero__msg {
+  align-items: center;
+  display: flex;
+  flex-flow: column wrap;
+  height: 30vh;
+  justify-content: center;
+  text-align: center;
+}
+.pghi-hero__msg h1 {
+  font-size: 2.2em;
+  margin-bottom: 12px;
+}
+.pghi-hero__msg h2 {}
+
+/* ghibli films basic layout */
+.pghi-films {
+  padding: 8px;
+}
+.pghi-films__header {}
+.pghi-films__header h3 {}
+.pghi-films__header p {}
+
+.pghi-films__list {}
+.pghi-films__list ul {}
+.pghi-films__list ul li{}
+
+/* Media styles */
+
+/* Tablets */
+@media screen and (min-width: 768px) {
+  /* hero section */
+  .pghi-hero__img {
+    height: 52vh;
+  }
+  .pghi-hero__msg {
+    height: 16vh;
+  }
+  .pghi-hero__msg h1 {
+    font-size: 2.6em;
+  }
+}
+
+/* Large screens */
+@media screen and (min-width: 992px) {
+  /* hero section */
+  .pghi-hero__box {
+    flex-flow: row nowrap;
+  }
+  .pghi-hero__img {
+    height: 60vh;
+    width: 64vw;
+  }
+  .pghi-hero__msg {
+    height: 60vh;
+    width: 36vw;
+  }
+  .pghi-hero__msg h1 {
+    margin-bottom: 60px;
+  }
+}

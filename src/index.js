@@ -1,3 +1,6 @@
+import './style.css';
+
+
 // Model, will be fetched and populated by controller
 const filmsModel = {
   baseURL: 'https://ghibliapi.herokuapp.com/',
