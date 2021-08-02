@@ -10,6 +10,7 @@ a {
   list-style: none;
   margin: 0;
   padding: 0;
+  position: relative;
   text-decoration: none;
 }
 
@@ -20,6 +21,11 @@ body {
   --main-border-color: #285534;
   background-color: #f4faf6;
   color: #285534;
+}
+
+img {
+  width: 100%;
+  height: auto;
 }
 
 /**
@@ -56,6 +62,13 @@ body {
 font-family: 'Architects Daughter', cursive;
 
  */
+/* Universal styles */
+.center-text {
+  text-align: center;
+}
+.center-block {
+  margin: 0 auto;
+}
 
 /* site header */
 .pghi-site-header {
@@ -66,7 +79,6 @@ font-family: 'Architects Daughter', cursive;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
-  margin: 0 auto;
   max-width: 768px;
   padding: 8px;
 }
@@ -94,85 +106,18 @@ font-family: 'Architects Daughter', cursive;
   background: var(--main-box-bg-color);
   border-top: 2px solid var(--main-border-color);
   height: 86px;
+  margin-top: 12px;
   padding: 8px;
-  text-align: center;
 }
 .pghi-site-footer p {
   line-height: 8px;
 }
 
-/* home basic layout */
-.pghi-home {}
-
-/* hero section */
-.pghi-hero__box {
-  background: var(--main-box-bg-color);
-  display: flex;
-  flex-flow: column wrap;
-}
-
-.pghi-hero__img {
-  height: 60vh;
-}
-.pghi-hero__img img {}
-
-.pghi-hero__msg {
-  align-items: center;
-  display: flex;
-  flex-flow: column wrap;
-  height: 30vh;
-  justify-content: center;
-  text-align: center;
-}
-.pghi-hero__msg h1 {
-  font-size: 2.2em;
-  margin-bottom: 12px;
-}
-.pghi-hero__msg h2 {}
-
-/* ghibli films basic layout */
-.pghi-films {
-  padding: 8px;
-}
-.pghi-films__header {}
-.pghi-films__header h3 {}
-.pghi-films__header p {}
-
-.pghi-films__list {}
-.pghi-films__list ul {}
-.pghi-films__list ul li{}
-
-/* Media styles */
+/* Media Queries */
 
 /* Tablets */
 @media screen and (min-width: 768px) {
-  /* hero section */
-  .pghi-hero__img {
-    height: 52vh;
-  }
-  .pghi-hero__msg {
-    height: 16vh;
-  }
-  .pghi-hero__msg h1 {
-    font-size: 2.6em;
-  }
-}
-
-/* Large screens */
-@media screen and (min-width: 992px) {
-  /* hero section */
-  .pghi-hero__box {
-    flex-flow: row nowrap;
-  }
-  .pghi-hero__img {
-    height: 60vh;
-    width: 64vw;
-  }
-  .pghi-hero__msg {
-    height: 60vh;
-    width: 36vw;
-  }
-  .pghi-hero__msg h1 {
-    margin-bottom: 60px;
+  .pghi-site-footer {
+    margin-top: 32px;
   }
 }

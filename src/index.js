@@ -1,4 +1,5 @@
 import './style.css';
+import './home.css';
 
 
 // Model, will be fetched and populated by controller
@@ -51,6 +52,7 @@ const filmsView = {
   init: function(films) {
     // use unordered list
     const ul = document.createElement('UL');
+    ul.setAttribute('class', 'pghi-films__list center-text');
     let li, div, h4, img, text;
 
     // only list wrapper listens for click
@@ -60,9 +62,11 @@ const filmsView = {
     films.forEach((film) => {
       // prep first list element
       li = document.createElement('LI');
+      li.setAttribute('class', 'pghi-films__list-item')
       // use div to wrap film image and title
       div = document.createElement('DIV');
       div.setAttribute('data-filmid', film.id)
+      div.setAttribute('class', 'pghi-films__list-item--box');
       li.appendChild(div);
 
       // create title with text node
@@ -86,7 +90,7 @@ const filmsView = {
 
   },
   render: function(view) {
-    const parent = document.querySelector('#pGhiFilmsList');
+    const parent = document.querySelector('#pGhiFilmsListBox');
     parent.appendChild(view);
   }
 }

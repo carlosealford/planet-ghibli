@@ -1,5 +1,109 @@
+/* home basic layout */
+.pghi-home {}
+
+/* hero section */
 .pghi-hero__box {
-  border: 2px solid #00ff00;
-  padding: 16px;
-  text-align: center;
+  background: var(--main-box-bg-color);
+  display: flex;
+  flex-flow: column wrap;
+}
+
+.pghi-hero__img {
+  height: 60vh;
+}
+.pghi-hero__img img {}
+
+.pghi-hero__msg {
+  align-items: center;
+  display: flex;
+  flex-flow: column wrap;
+  height: 30vh;
+  justify-content: center;
+}
+.pghi-hero__msg h1 {
+  font-size: 2.2em;
+  margin-bottom: 12px;
+}
+.pghi-hero__msg h2 {}
+
+/* ghibli films basic layout */
+.pghi-films {
+  padding: 8px;
+}
+.pghi-films__header {
+  margin: 32px 0;
+}
+.pghi-films__header h3 {}
+.pghi-films__header p {
+  margin: 4px 0;
+}
+
+.pghi-films__list-box {}
+.pghi-films__list {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+}
+.pghi-films__list-item {
+  max-width: 420px;
+}
+.pghi-films__list-item--box {
+  background: #285534;
+  margin-bottom: 32px;
+  min-height: 240px;
+}
+.pghi-films__list-item--box > h4 {
+  background: rgba(244, 250, 246, .8);
+  left: 0;
+  padding: 6px 0;
+  position: absolute;
+  top: 40px;
+  width: 100%
+}
+.pghi-films__list-item--box > img{}
+
+/* Media Queries */
+
+/* Tablets */
+@media screen and (min-width: 768px) {
+  /* list of films */
+  .pghi-films__header {
+    margin: 64px 0;
+  }
+  .pghi-films__list {
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+  }
+  .pghi-films__list-item {
+    width: 300px;
+  }
+  /* hero section */
+  .pghi-hero__img {
+    height: 52vh;
+  }
+  .pghi-hero__msg {
+    height: 16vh;
+  }
+  .pghi-hero__msg h1 {
+    font-size: 2.6em;
+  }
+}
+
+/* Large screens */
+@media screen and (min-width: 992px) {
+  /* hero section */
+  .pghi-hero__box {
+    flex-flow: row nowrap;
+  }
+  .pghi-hero__img {
+    height: 60vh;
+    width: 64vw;
+  }
+  .pghi-hero__msg {
+    height: 60vh;
+    width: 36vw;
+  }
+  .pghi-hero__msg h1 {
+    margin-bottom: 60px;
+  }
 }
