@@ -3,7 +3,7 @@
 
 /* hero section */
 .pghi-hero__box {
-  background: var(--main-box-bg-color);
+  background: rgb(var(--main-box-bg-color));
   display: flex;
   flex-flow: column wrap;
 }
@@ -48,12 +48,12 @@
   max-width: 420px;
 }
 .pghi-films__list-item--box {
-  background: #285534;
+  background: rgb(var(--c-cal-poly-green));
   margin-bottom: 32px;
   min-height: 240px;
 }
 .pghi-films__list-item--box > h4 {
-  background: rgba(244, 250, 246, .8);
+  background: rgba(var(--c-almost-white), .8);
   left: 0;
   padding: 6px 0;
   position: absolute;
