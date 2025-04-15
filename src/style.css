@@ -1,10 +1,4 @@
-body,
-section, article, div, nav, header, footer,
-h1, h2, h3, h4, h5,
-img, figure,
-ul, li
-p,
-a {
+* {
   border: 0;
   box-sizing: border-box;
   list-style: none;
@@ -14,13 +8,27 @@ a {
   text-decoration: none;
 }
 
+:root {
+  --c-almost-white: 244, 250, 246;
+  --c-honeydew: 220, 238, 225;
+  --c-jade: 80, 169, 103;
+  --c-cal-poly-green: 40, 85, 52;
+  --c-ucla-blue: 79, 117, 155;
+  --c-ultra-violet: 93, 81, 121;
+  --main-text-color: var(--c-cal-poly-green);
+  --main-box-bg-color: var(--c-honeydew);
+  --main-base-color: var(--c-jade);
+  --main-border-color: var(--c-cal-poly-green);
+  font-size: 18px;
+}
+
 body {
-  --main-text-color: #285534;
-  --main-box-bg-color: #dceee1;
-  --main-base-color: #50A967;
-  --main-border-color: #285534;
-  background-color: #f4faf6;
-  color: #285534;
+  background-color: rgb(var(--c-almost-white));
+  color: rgb(var(--main-text-color));
+}
+
+a {
+  color: var(--main-text-color);
 }
 
 img {
@@ -30,25 +38,12 @@ img {
 
 /**
  * Color pallete
- * Green
- f4faf6 (lightest)
- dceee1
- b8dec2
- 95cda4
- 72bc85
- 50A967 - 80, 169, 103 (base)
- 48995e
- 408853
- 387749
- 30663e
- 285534 (darkest)
-
- * blue
- A3C7CF - 163, 199, 207 (lightest)
- 6B9CA8 - 107, 156, 168
- 447E8C - 68, 126, 140 (base)
- 296674 - 41, 102, 116
- 15505E - 21, 80, 94
+ - Almost white: f4faf6 - 244, 250, 246
+ - Honeydew: dceee1 - 220, 238, 225
+ - Jade: 50a967 - 80, 169, 103
+ - Cal poly green: 285534 - 40, 85, 52
+ - ucla blue: 4f759b - 79, 117, 155
+ - Ultra violet: 5d5179 - 93, 81, 121
 
  * Font - architects daughter
  <style>
@@ -72,8 +67,8 @@ font-family: 'Architects Daughter', cursive;
 
 /* site header */
 .pghi-site-header {
-  background: var(--main-box-bg-color);
-  border-bottom: 2px solid var(--main-border-color);
+  background: rgb(var(--main-box-bg-color));
+  border-bottom: 2px solid rgb(var(--main-border-color));
 }
 .pghi-site-header-wrapper {
   display: flex;
@@ -93,7 +88,7 @@ font-family: 'Architects Daughter', cursive;
 }
 .pghi-site-nav__item {}
 .pghi-site-nav__item a {
-  color: var(--main-base-color);
+  color: rgb(var(--main-base-color));
   display: block;
   padding: 4px 8px;
 }
@@ -103,8 +98,8 @@ font-family: 'Architects Daughter', cursive;
 
 /* footer */
 .pghi-site-footer {
-  background: var(--main-box-bg-color);
-  border-top: 2px solid var(--main-border-color);
+  background: rgb(var(--main-box-bg-color));
+  border-top: 2px solid rgb(var(--main-border-color));
   height: 86px;
   margin-top: 12px;
   padding: 8px;
