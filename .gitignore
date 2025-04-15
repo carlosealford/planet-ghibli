@@ -1,3 +1,26 @@
-dist/
+# Node.js
 node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+dist/
+build/
+
+# Sass cache (just in case)
+.sass-cache/
+
+# VS Code settings (optional)
+.vscode/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Env files (if you use them later)
+.env
+.env.*.local
+
+# research files
 research/
