@@ -6,6 +6,7 @@
   background: rgb(var(--main-box-bg-color));
   display: flex;
   flex-flow: column wrap;
+  overflow: hidden;
 }
 
 .pghi-hero__img {
@@ -17,8 +18,10 @@
   align-items: center;
   display: flex;
   flex-flow: column wrap;
-  height: 30vh;
   justify-content: center;
+  height: 30vh;
+  background: rgb(var(--c-cal-poly-green));
+  color: rgb(var(--c-almost-white));
 }
 .pghi-hero__msg h1 {
   font-size: 2.2em;
@@ -80,9 +83,6 @@
   /* hero section */
   .pghi-hero__img {
     height: 52vh;
-  }
-  .pghi-hero__msg {
-    height: 16vh;
   }
   .pghi-hero__msg h1 {
     font-size: 2.6em;
