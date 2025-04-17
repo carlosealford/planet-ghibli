@@ -21,9 +21,9 @@ module.exports = {
       chunks: ["index"],
     }),
     new HtmlWebpackPlugin({
-      filename: "gallery.html",
-      template: "./src/templates/gallery.html",
-      chunks: ["gallery"],
+      filename: "film.html",
+      template: "./src/templates/film.html",
+      chunks: ["film"],
     })
   ],
   module: {
