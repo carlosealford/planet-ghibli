@@ -1,5 +1,5 @@
-import './style.css';
-import './film.css';
+import './styles/style.css';
+import './styles/film.css';
 
 
 // Model, use an object for each topic of information
