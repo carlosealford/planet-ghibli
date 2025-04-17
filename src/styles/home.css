@@ -37,9 +37,6 @@
   margin: 32px 0;
 }
 .pghi-films__header h3 {}
-.pghi-films__header p {
-  margin: 4px 0;
-}
 
 .pghi-films__list-box {}
 .pghi-films__list {
@@ -54,7 +51,17 @@
   background: rgb(var(--c-cal-poly-green));
   margin-bottom: 32px;
   min-height: 240px;
+  transform: scale(1);
+  transition: transform .24s;
 }
+.pghi-films__list-item--box:hover {
+  cursor: pointer;
+  transform: scale(.94);
+}
+.pghi-films__list-item--box:active {
+  background: rgb(var(--c-ucla-blue));
+}
+
 .pghi-films__list-item--box > h4 {
   background: rgba(var(--c-almost-white), .8);
   left: 0;

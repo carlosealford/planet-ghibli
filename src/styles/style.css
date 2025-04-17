@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap');
+
 * {
   border: 0;
   box-sizing: border-box;
@@ -20,6 +22,7 @@
   --main-base-color: var(--c-jade);
   --main-border-color: var(--c-cal-poly-green);
   font-size: 18px;
+  font-family: 'Architexts Daughter', sans-serif;
 }
 
 body {
@@ -88,24 +91,24 @@ font-family: 'Architects Daughter', cursive;
 }
 .pghi-site-nav__item {}
 .pghi-site-nav__item a {
-  color: rgb(var(--main-base-color));
+  color: rgb(var(--main-text-color));
   display: block;
   padding: 4px 8px;
 }
-.pghi-site-nav__item:not(.active) a {
-  transform: scale(.9);
+.pghi-site-nav__item.active a {
+  font-weight: bold;
+}
+.pghi-site-nav__item a:hover {
+  text-decoration: underline;
 }
 
 /* footer */
 .pghi-site-footer {
   background: rgb(var(--main-box-bg-color));
   border-top: 2px solid rgb(var(--main-border-color));
-  height: 86px;
+  height: auto;
   margin-top: 12px;
   padding: 8px;
-}
-.pghi-site-footer p {
-  line-height: 8px;
 }
 
 /* Media Queries */

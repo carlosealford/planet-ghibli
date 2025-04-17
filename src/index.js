@@ -38,7 +38,7 @@ const homeController = {
     // only react to clicks inside the li element
     if (e.target.nodeName === 'UL') return;
     // navigate to film.html with the film unique id as parameter
-    let url = 'film.html?id=' + e.target.dataset.filmid;
+    let url = 'film.html?id=' + e.target.parentElement.dataset.filmid;
     window.location.href = url;
   }
 }
