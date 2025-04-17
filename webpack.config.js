@@ -9,9 +9,22 @@ module.exports = {
   },
   mode: 'development',
   output: {
-    filename: '[name].js',
+    filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
+    clean: true,
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      filename: "index.html",
+      template: "./src/templates/index.html",
+      chunks: ["index"],
+    }),
+    new HtmlWebpackPlugin({
+      filename: "gallery.html",
+      template: "./src/templates/gallery.html",
+      chunks: ["gallery"],
+    })
+  ],
   module: {
     // use two loaders for css and css modules
     rules: [
