@@ -4,7 +4,7 @@ import './styles/film.css';
 
 // Model, use an object for each topic of information
 const filmModel = {
-  baseURL: 'https://ghibliapi.herokuapp.com/',
+  baseURL: 'https://ghibliapi.vercel.app/',
   film: {},
   people: {},
   species: {},
