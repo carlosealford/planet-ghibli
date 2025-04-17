@@ -12,13 +12,11 @@
 .pghi-film__hero-header > h3 {
   margin-top: 16px;
 }
-.pghi-film__hero--body {
-  padding: 16px 0;
-}
-.pghi-film__hero--video {
-  background: red;
-  width: 300px;
-  height: 200px;
+.pghi-film__hero--body {}
+.pghi-film__hero--banner {
+  background: rgb(var(--c-ucla-blue));
+  width: 100%;
+  max-width: 992px;
   margin: 32px auto 0;
   display: block;
 }
@@ -194,6 +192,9 @@
   /* general info */
   .pghi-film__info {
     width: 800px;
+  }
+  .pghi-film__info--list {
+    gap: 6rem;
   }
   /* film extras */
   .pghi-film__extras {

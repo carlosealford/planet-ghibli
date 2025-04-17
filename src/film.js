@@ -21,6 +21,7 @@ const filmController = {
     this.queryAPI('films', filmID).then(film => {
       filmModel.film = film;
       // prep the film main view
+      console.log("FILM: ", filmModel.film)
       filmInfo.ini(filmModel.film);
       // start prep for film extras
       this.filmExtraInfo();
@@ -76,9 +77,9 @@ const filmController = {
     // with just the endpoint and data you can update any property in the model
     filmModel[endpoint] = data;
   },
-  queryAPI: function(src, id = '') {
+  queryAPI: async function(src, id = '') {
     const url = filmModel.baseURL + src + '/' + id;
-    return fetch(url).then(data => data.json());
+    return await fetch(url).then(data => data.json());
   },
   createElement: function(eleName, text = false) {
     let el = document.createElement(eleName);
@@ -93,31 +94,40 @@ const filmController = {
 const filmInfo = {
   ini: function(film){
     // film header
-    const h2 = document.createElement('H2')
-    h2.textContent = film.title;
+    const h1 = document.createElement('H1')
+    h1.textContent = film.title;
     const h3 = document.createElement('H3');
     h3.textContent = film.original_title;
+
+    // hero movie banner
+    const movieBanner = document.createElement('IMG');
+    movieBanner.setAttribute('alt', `movie banner for ${film.original_title_romanised}`);
+    movieBanner.setAttribute('src', film.movie_banner);
 
     // film description
     const desc = document.createElement('P');
     desc.textContent = film.description;
 
     // render the film view
-    this.render(h2, h3, desc, film);
+    const view = {title: h1, subtitle: h3, description: desc, movieBanner, film}
+    this.render(view);
   },
-  render: function(h2, h3, desc, film) {
+  render: function(view) {
     const title = document.querySelector('#pGhiFilmHeroHeader');
     const description = document.querySelector('#pGhiFilmDescBody');
+    const heroBanner = document.querySelector('#pGhiFilmHeroBanner');
     // four span are filled in order with: release_date, running_time, director, producer
     const infoList = document.querySelectorAll('#pGhiFilmInfoList > li > span');
-    // can be improved...
-    title.append(h2, h3);
-    description.appendChild(desc);
+    // movie title english, japanese
+    title.append(view.title, view.subtitle);
+    description.appendChild(view.description);
+    // hero movie banner
+    heroBanner.append(view.movieBanner)
     // film info
-    infoList[0].textContent = film.release_date;
-    infoList[1].textContent = film.running_time;
-    infoList[2].textContent = film.director;
-    infoList[3].textContent = film.producer;
+    infoList[0].textContent = view.film.release_date;
+    infoList[1].textContent = view.film.running_time;
+    infoList[2].textContent = view.film.director;
+    infoList[3].textContent = view.film.producer;
   }
 }
 
@@ -156,6 +166,7 @@ const filmPeople = {
 
     // list of item attributes
     people.forEach(person => {
+      console.log("THE PERSONS: ", person);
       const article = cElem('ARTICLE');
       article.setAttribute('class', 'pghi-card');
       const header = cElem('HEADER');
