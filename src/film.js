@@ -172,8 +172,6 @@ const filmPeople = {
       const header = cElem('HEADER');
       header.setAttribute('class', 'pghi-card__header');
       const profileBox = cElem('DIV');
-      profileBox.setAttribute('class', 'pghi-card__header--profile');
-      const profile = cElem('IMG');
       const h3 = cElem('H3');
       h3.setAttribute('class', 'pghi-card__header--title');
       const div = cElem('DIV');
@@ -207,8 +205,7 @@ const filmPeople = {
       li = cElem('LI');
       span = cElem('SPAN');
       // character header
-      profileBox.appendChild(profile);
-      header.append(profileBox, h3);
+      header.append(h3);
       div.appendChild(ul);
       // assemble the card for film individual
       article.append(header, div);

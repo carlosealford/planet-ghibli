@@ -136,14 +136,6 @@
 }
 
 /* TODO: WORKING ONT HE CARD LAYOUT */
-.pghi-card__header--profile {
-  height: 60px;
-  width: 60px;
-  border: 4px solid rgb(var(--c-almost-white));
-  border-radius: 32px;
-  background: red;
-}
-
 .pghi-card__header--title {
   padding-left: 1rem;
   text-align: center;
