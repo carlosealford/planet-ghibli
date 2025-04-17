@@ -1,5 +1,5 @@
-import './style.css';
-import './home.css';
+import './styles/style.css';
+import './styles/home.css';
 
 
 // Model, will be fetched and populated by controller
