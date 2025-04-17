@@ -120,14 +120,15 @@
 
 /* Film Extras Cards */
 .pghi-card {
-  background-color: rgb(var(--c-ucla-blue));
+  max-width: 992px;
   border: 2px solid rgb(var(--c-ultra-violet));
   border-radius: 4px;
-  box-shadow: 0 0 12px 2px rgba(var(--c-ultra-violet),.4);
+  padding: .4rem;
+  margin: 16px auto;
+  background-color: rgb(var(--c-ucla-blue));
   color: #fff;
-  margin: 16px 8px;
-  padding: 8px;
   font-size: 18px;
+  box-shadow: 0 0 12px 2px rgba(var(--c-ultra-violet),.4);
 }
 
 .pghi-card__header {
@@ -136,14 +137,11 @@
 }
 
 /* TODO: WORKING ONT HE CARD LAYOUT */
-.pghi-card__header--title {
-  padding-left: 1rem;
-  text-align: center;
-}
+.pghi-card__header--title {}
 
 .pghi-card__body {}
 .pghi-card__body--list {
-  padding: 1rem;
+  padding: .6rem;
 }
 .pghi-card__body--list-item {}
 
@@ -165,6 +163,14 @@
   /* film extras */
   .pghi-film__extras {
     margin-top: 58px;
+  }
+
+  .pghi-card__body--list {
+    padding: 1rem;
+  }
+
+  .pghi-card {
+    padding: 1rem;
   }
 }
 @media screen and (min-width: 992px) {
@@ -191,5 +197,9 @@
   /* film extras */
   .pghi-film__extras {
     max-width: 660px;
+  }
+
+  .pghi-card {
+    padding: 2rem;
   }
 }

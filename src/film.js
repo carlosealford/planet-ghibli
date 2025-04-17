@@ -131,7 +131,11 @@ const filmInfo = {
   }
 }
 
-// TODO: CREATE AND RETURN THE MODAL TO POPULATE
+/**
+ * Dynamic modal creation ready to be populated
+ * @params {string} title - header text for the modal, defaults to something
+ * @returns {object} with two properties, modalBody to be populated and the modalPopup who is the parent
+ */
 const filmModal = function(title = 'something') {
   const cElem = el => document.createElement(el);
   const cAttr = (el, at, value) => {
@@ -160,13 +164,13 @@ const filmModal = function(title = 'something') {
   return {modalPopup, modalBody};
 }
 
+// Creates the People modal and populates it
 const filmPeople = {
   ini: function(people, cElem) {
     const {modalPopup, modalBody} = filmModal('People');
 
     // list of item attributes
     people.forEach(person => {
-      console.log("THE PERSONS: ", person);
       const article = cElem('ARTICLE');
       article.setAttribute('class', 'pghi-card');
       const header = cElem('HEADER');
@@ -222,6 +226,7 @@ const filmPeople = {
   }
 };
 
+// Creates the Species modal and populates it
 const filmSpecies = {
   ini: function(species, cElem) {
     const {modalPopup, modalBody} = filmModal('Species');
@@ -230,6 +235,8 @@ const filmSpecies = {
       const article = cElem('ARTICLE');
       article.setAttribute('class', 'pghi-card');
       let ul = cElem('UL');
+      ul.setAttribute('class', 'pghi-card__body--list');
+      let ulL2, li, span, p;
       const header = cElem('HEADER');
       header.setAttribute('class', 'pghi-card__header');
       const h3 = cElem('H3', specie.name);
@@ -239,27 +246,44 @@ const filmSpecies = {
       div.setAttribute('class', 'pghi-card__body');
       article.append(header);
 
-      let p = cElem('P', specie.classification);
-      let span = cElem('SPAN', "Classification: ");
-      p.prepend(span);
-      div.append(p);
+      // list item - classification
+      li = cElem('LI');
+      li.setAttribute('class', 'pghi-card__body--list-item');
+      p = cElem('P');
+      p.setAttribute('class', 'pghi-card__body--list-item');
+      let textNode = document.createTextNode(specie.classification);
+      span = cElem('SPAN', "Classification: ");
+      p.prepend(span, textNode);
+      li.append(p);
+      ul.append(li);
 
-      // list of eye colours
-      p = cElem('P', "Eye Colours: ");
+      // list item - eye colours
+      li = cElem('LI');
+      li.setAttribute('class', 'pghi-card__body--list-item');
+      span = cElem('SPAN', "Eye Colours: ");
+      ulL2 = cElem('UL');
+      ulL2.setAttribute('class', 'pghi-card__body--list');
       specie.eye_colors.split(', ').forEach(color => {
         let li = cElem('LI', color);
-        ul.appendChild(li);
+        ulL2.appendChild(li);
       });
-      div.append(p, ul);
+      li.append(span, ulL2);
+      ul.append(li);
 
       // list of hair colours
-      p = cElem('P', "Hair Colours: ");
-      ul = cElem('UL');
+      li = cElem('LI');
+      li.setAttribute('class', 'pghi-card__body--list-item');
+      span = cElem('SPAN', "Hair Colours: ");
+      ulL2 = cElem('UL');
+      ulL2.setAttribute('class', 'pghi-card__body--list');
       specie.hair_colors.split(', ').forEach(color => {
         let li = cElem('LI', color);
-        ul.appendChild(li);
+        ulL2.appendChild(li);
       });
-      div.append(p, ul);
+      li.append(span, ulL2);
+      ul.append(li);
+
+      div.append(ul);
       article.append(div);
       modalBody.appendChild(article);
     });
@@ -273,6 +297,8 @@ const filmSpecies = {
     container.appendChild(view);
   }
 }
+
+// Creates the Locations modal and populates it
 const filmLocations = {
   ini: function(locations, cElem) {
     const {modalPopup, modalBody} = filmModal('Locations');
@@ -316,6 +342,7 @@ const filmLocations = {
   }
 }
 
+// Creates the Vehicles modal and populates it
 const filmVehicles = {
   ini: function(vehicles, cElem) {
     const {modalPopup, modalBody} = filmModal('Vehicles');
