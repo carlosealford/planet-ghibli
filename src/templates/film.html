@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Planet Ghibli</title>
+  </head>
+  <body>
+    <!-- page header navigation -->
+    <header class="pghi-site-header">
+      <div class="pghi-site-header-wrapper center-block">
+        <h2>Planet Ghibli</h2>
+        <nav class="pghi-site-nav">
+          <ul>
+            <li class="pghi-site-nav__item active">
+              <a href="#">HOME</a>
+            </li>
+            <li class="pghi-site-nav__item">
+              <a href="#">ABOUT</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- all content for selected film -->
+    <main id="pGhibliFilm">
+      <!-- hero with title, original title and film trailer -->
+      <section class="pghi-film__hero">
+        <header id="pGhiFilmHeroHeader" class="pghi-film__hero-header center-text"></header>
+        <div class="pghi-film__hero--body">
+          <div class="pghi-film__hero--video">
+            <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/4OiMOHRDs14" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+          </div>
+        </div>
+      </section>
+      <!-- leaflet part which talks about the film in more detail -->
+      <section class="pghi-film__leaflet">
+        <!-- films description -->
+        <div class="pghi-film__desc">
+          <h3 class="center-text">Film Description</h3>
+          <div id="pGhiFilmDescBody" class="pghi-film__desc-body"></div>
+        </div>
+        <!-- film general information -->
+        <div class="pghi-film__info">
+          <ul id="pGhiFilmInfoList" class="pghi-film__info--list">
+            <li class="pghi-film__info--list-item">Release Date: <span></span></li>
+            <li class="pghi-film__info--list-item">Running Time: <span></span></li>
+            <li class="pghi-film__info--list-item">Director: <span></span></li>
+            <li class="pghi-film__info--list-item">Producer: <span></span></li>
+          </ul>
+        </div>
+        <!-- film extras, like vehicles and characters -->
+        <div class="pghi-film__extras center-text">
+          <a class="pghi-film__extras-popup-btn" href="#pGhiExtrasPeoplePopup">People</a>
+          <a class="pghi-film__extras-popup-btn" href="#pGhiExtrasSpeciesPopup">Species</a>
+          <a class="pghi-film__extras-popup-btn" href="#pGhiExtrasLocationsPopup">Locations</a>
+          <a class="pghi-film__extras-popup-btn" href="#pGhiExtrasVehiclesPopup">Vehicles</a>
+        </div>
+      </section>
+    </main>
+    <!-- Modals -->
+    <div id="pghiExtras" class="pghi-extras">
+      <div id="pGhiExtrasPeoplePopup" class="pghi-extras__overlay"></div>
+      <div id="pGhiExtrasSpeciesPopup" class="pghi-extras__overlay"></div>
+      <div id="pGhiExtrasLocationsPopup" class="pghi-extras__overlay"></div>
+      <div id="pGhiExtrasVehiclesPopup" class="pghi-extras__overlay"></div>
+    </div>
+    <!-- page footer -->
+    <footer class="pghi-site-footer center-text">
+      <p>With love by Carlos E Alford</p>
+      <p>2021 - @WebShuriken</p>
+    </footer>
+    <script src="film.js" charset="utf-8"></script>
+  </body>
+</html>

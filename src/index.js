@@ -4,7 +4,7 @@ import './home.css';
 
 // Model, will be fetched and populated by controller
 const filmsModel = {
-  baseURL: 'https://ghibliapi.herokuapp.com/',
+  baseURL: 'https://ghibliapi.vercel.app/',
   films: []
 }
 
@@ -55,7 +55,7 @@ const filmsView = {
     ul.setAttribute('class', 'pghi-films__list center-text');
     let li, div, h4, img, text;
 
-    // only list wrapper listens for click
+    // only list wrapper listens for click. fewer listeners quicker site.
     ul.addEventListener('click', filmController.openFilmPage);
 
     // create a list item with image and title for each film
@@ -76,7 +76,7 @@ const filmsView = {
 
       // create image
       img = document.createElement('IMG');
-      img.setAttribute('src', '#');
+      img.setAttribute('src', film.image);
       img.setAttribute('alt', film.title);
 
       div.appendChild(h4);

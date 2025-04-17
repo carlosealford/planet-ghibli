@@ -1,4 +1,5 @@
 import './style.css';
+import './film.css';
 
 
 // Model, use an object for each topic of information
@@ -120,36 +121,75 @@ const filmInfo = {
   }
 }
 
+// TODO: CREATE AND RETURN THE MODAL TO POPULATE
+const filmModal = function(title = 'something') {
+  const cElem = el => document.createElement(el);
+  const cAttr = (el, at, value) => {
+    el.setAttribute(at, value);
+  }
+
+  // popup wrapper
+  const modalPopup = cElem('DIV');
+  cAttr(modalPopup, 'class', 'pghi-film__popup');
+
+  // popup header
+  const modalHeader = cElem('DIV');
+  cAttr(modalHeader, 'class', 'pghi-film__popup-header');
+  const h2 = cElem('H2');
+  h2.textContent = title;
+  const closeBtn = cElem('A');
+  closeBtn.href = '#';
+  closeBtn.textContent = 'close';
+  modalHeader.append(h2, closeBtn);
+
+  modalPopup.append(modalHeader);
+  // popup content
+  const modalBody = cElem('DIV');
+  cAttr(modalBody, 'class', 'pghi-film__popup-body');
+
+  return {modalPopup, modalBody};
+}
+
 const filmPeople = {
   ini: function(people, cElem) {
-    const parent = document.createElement('DIV');
+    const {modalPopup, modalBody} = filmModal('People');
 
     // list of item attributes
     people.forEach(person => {
       const article = cElem('ARTICLE');
+      article.setAttribute('class', 'pghi-card');
       const header = cElem('HEADER');
+      header.setAttribute('class', 'pghi-card__header');
       const profileBox = cElem('DIV');
+      profileBox.setAttribute('class', 'pghi-card__header--profile');
       const profile = cElem('IMG');
       const h3 = cElem('H3');
+      h3.setAttribute('class', 'pghi-card__header--title');
       const div = cElem('DIV');
+      div.setAttribute('class', 'pghi-card__body');
       const ul = cElem('UL');
+      ul.setAttribute('class', 'pghi-card__body--list');
 
       h3.textContent = person.name;
 
       // TODO: IMPROVE LIST CREATION, only doing it this way because of time constraints
       let li = cElem('LI', person.age);
+      li.setAttribute('class', 'pghi-card__body--list-item');
       let span = cElem('SPAN', "Age: ");
       li.prepend(span);
       ul.appendChild(li);
       li = cElem('LI', person.gender);
+      li.setAttribute('class', 'pghi-card__body--list-item');
       span = cElem('SPAN', "Gender: ");
       li.prepend(span);
       ul.appendChild(li);
       li = cElem('LI', person.eye_color);
+      li.setAttribute('class', 'pghi-card__body--list-item');
       span = cElem('SPAN', "Eye colour: ");
       li.prepend(span);
       ul.appendChild(li);
       li = cElem('LI', person.hair_color);
+      li.setAttribute('class', 'pghi-card__body--list-item');
       span = cElem('SPAN', "Hair colour: ");
       li.prepend(span);
       ul.appendChild(li);
@@ -161,34 +201,40 @@ const filmPeople = {
       div.appendChild(ul);
       // assemble the card for film individual
       article.append(header, div);
-      parent.appendChild(article);
+      modalBody.appendChild(article);
     });
 
+    modalPopup.append(modalBody);
     // now render the peoples block
-    this.render(parent);
+    this.render(modalPopup);
   },
   render: function(view) {
-    const container = document.querySelector('#pghiExtrasPeople');
+    const container = document.querySelector('#pGhiExtrasPeoplePopup');
     container.appendChild(view);
   }
 };
 
 const filmSpecies = {
   ini: function(species, cElem) {
-    const parent = cElem('DIV');
+    const {modalPopup, modalBody} = filmModal('Species');
 
     species.forEach(specie => {
       const article = cElem('ARTICLE');
+      article.setAttribute('class', 'pghi-card');
       let ul = cElem('UL');
       const header = cElem('HEADER');
+      header.setAttribute('class', 'pghi-card__header');
       const h3 = cElem('H3', specie.name);
+      h3.setAttribute('class', 'pghi-card__header--title');
       header.appendChild(h3);
+      const div = cElem('DIV');
+      div.setAttribute('class', 'pghi-card__body');
       article.append(header);
 
       let p = cElem('P', specie.classification);
       let span = cElem('SPAN', "Classification: ");
       p.prepend(span);
-      article.append(p);
+      div.append(p);
 
       // list of eye colours
       p = cElem('P', "Eye Colours: ");
@@ -196,7 +242,7 @@ const filmSpecies = {
         let li = cElem('LI', color);
         ul.appendChild(li);
       });
-      article.append(p, ul);
+      div.append(p, ul);
 
       // list of hair colours
       p = cElem('P', "Hair Colours: ");
@@ -205,28 +251,35 @@ const filmSpecies = {
         let li = cElem('LI', color);
         ul.appendChild(li);
       });
-      article.append(p, ul);
-      parent.appendChild(article);
+      div.append(p, ul);
+      article.append(div);
+      modalBody.appendChild(article);
     });
 
+    modalPopup.append(modalBody);
     // render the species block
-    this.render(parent);
+    this.render(modalPopup);
   },
   render: function(view) {
-    const container = document.querySelector('#pghiExtrasSpecies');
+    const container = document.querySelector('#pGhiExtrasSpeciesPopup');
     container.appendChild(view);
   }
 }
 const filmLocations = {
   ini: function(locations, cElem) {
-    const parent = cElem('DIV');
+    const {modalPopup, modalBody} = filmModal('Locations');
 
     locations.forEach(location => {
       const article = cElem('ARTICLE');
+      article.setAttribute('class', 'pghi-card');
       const header = cElem('HEADER');
+      header.setAttribute('class', 'pghi-card__header');
+      const div = cElem('DIV');
+      div.setAttribute('class', 'pghi-card__body');
       const ul = cElem('UL');
 
       const h3 = cElem('H3', location.name);
+      h3.setAttribute('class', 'pghi-card__header--title');
       header.appendChild(h3);
       let li = cElem('LI', location.climate);
       let span = cElem('SPAN', "Climate: ");
@@ -240,55 +293,64 @@ const filmLocations = {
       span = cElem('SPAN', "Surface Water: ");
       li.prepend(span);
       ul.appendChild(li);
-      article.append(header, ul);
-      parent.appendChild(article);
+      div.append(ul);
+      article.append(header, div);
+      modalBody.appendChild(article);
     });
 
+    modalPopup.append(modalBody);
     // render the species block
-    this.render(parent);
+    this.render(modalPopup);
   },
   render: function(view) {
-    const container = document.querySelector('#pghiExtrasLocations');
+    const container = document.querySelector('#pGhiExtrasLocationsPopup');
     container.appendChild(view);
   }
 }
 
 const filmVehicles = {
   ini: function(vehicles, cElem) {
-    const parent = cElem('DIV');
+    const {modalPopup, modalBody} = filmModal('Vehicles');
 
     vehicles.forEach(vehicle => {
       const article = cElem('ARTICLE');
+      article.setAttribute('class', 'pghi-card');
       const header = cElem('HEADER');
+      header.setAttribute('class', 'pghi-card__header');
+      const div = cElem('DIV');
+      div.setAttribute('class', 'pghi-card__body');
       const profileBox = cElem('DIV');
       const profile = cElem('IMG');
       const ul = cElem('UL');
 
       const h3 = cElem('H3', vehicle.name);
+      h3.setAttribute('class', 'pghi-card__header--title');
       profileBox.appendChild(profile);
       header.append(profileBox, h3);
-      article.appendChild(header);
+      div.appendChild(header);
 
       let p = cElem('P', vehicle.vehicle_class);
       let span = cElem('SPAN', "Vehicle Class: ");
       p.prepend(span);
-      article.appendChild(p);
+      div.appendChild(p);
 
       p = cElem('P', vehicle.length);
       span = cElem('SPAN', "Length: ");
       p.prepend(span);
-      article.appendChild(p);
+      div.appendChild(p);
 
       p = cElem('P', vehicle.description);
-      article.appendChild(p);
-      parent.appendChild(article);
+      div.appendChild(p);
+      article.append(div);
+      modalBody.appendChild(article);
     });
 
+    modalPopup.append(modalBody);
     // render the species block
-    this.render(parent);
+    this.render(modalPopup);
   },
   render: function(view) {
-    const container = document.querySelector('#pghiExtrasVehicles');
+    const container = document.querySelector('#pGhiExtrasVehiclesPopup');
     container.appendChild(view);
   }
 }
