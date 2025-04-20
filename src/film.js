@@ -311,19 +311,30 @@ const filmLocations = {
       const div = cElem('DIV');
       div.setAttribute('class', 'pghi-card__body');
       const ul = cElem('UL');
+      ul.setAttribute('class', 'pghi-card__body--list');
 
+      // list header
       const h3 = cElem('H3', location.name);
       h3.setAttribute('class', 'pghi-card__header--title');
       header.appendChild(h3);
+
+      // climate
       let li = cElem('LI', location.climate);
+      li.setAttribute('class', 'pghi-card__body--list-item');
       let span = cElem('SPAN', "Climate: ");
       li.prepend(span);
       ul.appendChild(li);
+
+      // terrain
       li = cElem('LI', location.terrain);
+      li.setAttribute('class', 'pghi-card__body--list-item');
       span = cElem('SPAN', "Terrain: ");
       li.prepend(span);
       ul.appendChild(li);
+
+      // surface water
       li = cElem('LI', location.surface_water);
+      li.setAttribute('class', 'pghi-card__body--list-item');
       span = cElem('SPAN', "Surface Water: ");
       li.prepend(span);
       ul.appendChild(li);
