@@ -86,6 +86,13 @@ const filmController = {
       el.textContent = text || 'NA';
     }
     return el;
+  },
+  getVehiclePilot: function(pilotID) {
+    // the pilot is given as a url and id is the last part
+    const splitURL = pilotID.split('/');
+    const id = splitURL.pop();
+    const pilotName = filmModel.people.filter((name) => id === name.id);
+    return pilotName[0].name;
   }
 }
 
@@ -384,7 +391,7 @@ const filmVehicles = {
       ul.appendChild(li);
 
       // vehicle pilot
-      li = cElem('LI', vehicle.pilot);
+      li = cElem('LI', filmController.getVehiclePilot(vehicle.pilot));
       li.setAttribute('class', 'pghi-card__body--list-item');
       span = cElem('SPAN', "Pilot: ");
       li.prepend(span);
