@@ -21,7 +21,6 @@ const filmController = {
     this.queryAPI('films', filmID).then(film => {
       filmModel.film = film;
       // prep the film main view
-      console.log("FILM: ", filmModel.film)
       filmInfo.ini(filmModel.film);
       // start prep for film extras
       this.filmExtraInfo();
@@ -368,25 +367,43 @@ const filmVehicles = {
       const profileBox = cElem('DIV');
       const profile = cElem('IMG');
       const ul = cElem('UL');
+      ul.setAttribute('class', 'pghi-card__body--list');
 
+      // list header - vehicle name
       const h3 = cElem('H3', vehicle.name);
       h3.setAttribute('class', 'pghi-card__header--title');
       profileBox.appendChild(profile);
       header.append(profileBox, h3);
       div.appendChild(header);
 
-      let p = cElem('P', vehicle.vehicle_class);
+      // vehicle class
+      let li = cElem('LI', vehicle.vehicle_class);
+      li.setAttribute('class', 'pghi-card__body--list-item');
       let span = cElem('SPAN', "Vehicle Class: ");
-      p.prepend(span);
-      div.appendChild(p);
+      li.prepend(span);
+      ul.appendChild(li);
 
-      p = cElem('P', vehicle.length);
+      // vehicle pilot
+      li = cElem('LI', vehicle.pilot);
+      li.setAttribute('class', 'pghi-card__body--list-item');
+      span = cElem('SPAN', "Pilot: ");
+      li.prepend(span);
+      ul.appendChild(li);
+
+      // vehicle length
+      li = cElem('LI', vehicle.length);
+      li.setAttribute('class', 'pghi-card__body--list-item');
       span = cElem('SPAN', "Length: ");
-      p.prepend(span);
-      div.appendChild(p);
+      li.prepend(span);
+      ul.appendChild(li);
 
-      p = cElem('P', vehicle.description);
-      div.appendChild(p);
+      // vehicle description
+      li = cElem('LI', vehicle.description);
+      li.setAttribute('class', 'pghi-card__body--list-item');
+      ul.appendChild(li);
+
+      // put it all together
+      div.appendChild(ul);
       article.append(div);
       modalBody.appendChild(article);
     });
