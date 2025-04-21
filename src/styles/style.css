@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap');
+
 * {
   border: 0;
   box-sizing: border-box;
@@ -20,9 +22,16 @@
   --main-base-color: var(--c-jade);
   --main-border-color: var(--c-cal-poly-green);
   font-size: 18px;
+  font-family: 'Architexts Daughter', sans-serif;
+}
+
+html {
+  background: rgb(var(--c-honeydew));
 }
 
 body {
+  margin: auto;
+  width: min(100%, 2400px);
   background-color: rgb(var(--c-almost-white));
   color: rgb(var(--main-text-color));
 }
@@ -74,8 +83,12 @@ font-family: 'Architects Daughter', cursive;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
+  align-items: center;
   max-width: 768px;
   padding: 8px;
+}
+.pghi-site-header-wrapper h2 {
+  font-size: 1rem;
 }
 .pghi-site-header-wrapper h3 {}
 
@@ -88,24 +101,24 @@ font-family: 'Architects Daughter', cursive;
 }
 .pghi-site-nav__item {}
 .pghi-site-nav__item a {
-  color: rgb(var(--main-base-color));
+  color: rgb(var(--main-text-color));
   display: block;
   padding: 4px 8px;
 }
-.pghi-site-nav__item:not(.active) a {
-  transform: scale(.9);
+.pghi-site-nav__item.active a {
+  font-weight: bold;
+}
+.pghi-site-nav__item a:hover {
+  text-decoration: underline;
 }
 
 /* footer */
 .pghi-site-footer {
   background: rgb(var(--main-box-bg-color));
   border-top: 2px solid rgb(var(--main-border-color));
-  height: 86px;
+  height: auto;
   margin-top: 12px;
   padding: 8px;
-}
-.pghi-site-footer p {
-  line-height: 8px;
 }
 
 /* Media Queries */
@@ -114,5 +127,11 @@ font-family: 'Architects Daughter', cursive;
 @media screen and (min-width: 768px) {
   .pghi-site-footer {
     margin-top: 32px;
+  }
+}
+
+@media screen and (min-width: 2400px) {
+  body {
+    box-shadow: 0 0 24px rgba(var(--c-ucla-blue), .6);
   }
 }

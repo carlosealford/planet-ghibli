@@ -1,10 +1,15 @@
-import './style.css';
-import './home.css';
+import './styles/style.css';
+import './styles/home.css';
+import heroImageLarge from './assets/images/studio-ghibli-bg.jpg'
+
+if (module.hot) {
+  module.hot.accept();
+}
 
 
 // Model, will be fetched and populated by controller
-const filmsModel = {
-  baseURL: 'https://ghibliapi.herokuapp.com/',
+const homeModel = {
+  baseURL: 'https://ghibliapi.vercel.app/',
   films: []
 }
 
@@ -15,19 +20,18 @@ const filmsModel = {
  * - getFilms - fetch films from API
  * - openFilmPage - detect which film was clicked and opens its film page
  */
-const filmController = {
+const homeController = {
   initFilms: function() {
     this.getFilms().then(films => {
-      // TODO: add the image url to each film object
-      filmsModel.films = films;
+      homeModel.films = films;
       this.createFilmsPage(films);
     });
   },
   createFilmsPage: function(films) {
-    filmsView.init(films);
+    homeView.init(films);
   },
   getFilms: function() {
-    return fetch(filmsModel.baseURL + 'films', {
+    return fetch(homeModel.baseURL + 'films', {
       headers: {
         'Content-Type': 'application/json',
       }
@@ -38,7 +42,7 @@ const filmController = {
     // only react to clicks inside the li element
     if (e.target.nodeName === 'UL') return;
     // navigate to film.html with the film unique id as parameter
-    let url = 'film.html?id=' + e.target.dataset.filmid;
+    let url = 'film.html?id=' + e.target.parentElement.dataset.filmid;
     window.location.href = url;
   }
 }
@@ -48,15 +52,20 @@ const filmController = {
  * - init - prepares the list of films
  * - render - appends the list to the DOM
  */
-const filmsView = {
+const homeView = {
   init: function(films) {
+    // Prep Hero images
+    const heroImage = document.createElement('IMG');
+    heroImage.setAttribute('src', heroImageLarge);
+    heroImage.setAttribute('alt', 'studio ghibli logo image of totoro with japanese title')
+
     // use unordered list
     const ul = document.createElement('UL');
     ul.setAttribute('class', 'pghi-films__list center-text');
     let li, div, h4, img, text;
 
-    // only list wrapper listens for click
-    ul.addEventListener('click', filmController.openFilmPage);
+    // only list wrapper listens for click. fewer listeners quicker site.
+    ul.addEventListener('click', homeController.openFilmPage);
 
     // create a list item with image and title for each film
     films.forEach((film) => {
@@ -76,7 +85,7 @@ const filmsView = {
 
       // create image
       img = document.createElement('IMG');
-      img.setAttribute('src', '#');
+      img.setAttribute('src', film.image);
       img.setAttribute('alt', film.title);
 
       div.appendChild(h4);
@@ -86,12 +95,15 @@ const filmsView = {
     });
 
     // render the list of films
-    this.render(ul);
+    const view = {list: ul, heroImage: heroImage}
+    this.render(view);
 
   },
   render: function(view) {
+    const heroImage = document.querySelector('#pGhiHeroImg');
+    heroImage.appendChild(view.heroImage)
     const parent = document.querySelector('#pGhiFilmsListBox');
-    parent.appendChild(view);
+    parent.appendChild(view.list);
   }
 }
 
@@ -99,7 +111,7 @@ const filmsView = {
  * @description gets the home page going
  */
 function buildPage() {
-  filmController.initFilms();
+  homeController.initFilms();
 }
 
 buildPage();
