@@ -25,7 +25,13 @@
   font-family: 'Architexts Daughter', sans-serif;
 }
 
+html {
+  background: rgb(var(--c-honeydew));
+}
+
 body {
+  margin: auto;
+  width: min(100%, 2400px);
   background-color: rgb(var(--c-almost-white));
   color: rgb(var(--main-text-color));
 }
@@ -121,5 +127,11 @@ font-family: 'Architects Daughter', cursive;
 @media screen and (min-width: 768px) {
   .pghi-site-footer {
     margin-top: 32px;
+  }
+}
+
+@media screen and (min-width: 2400px) {
+  body {
+    box-shadow: 0 0 24px rgba(var(--c-ucla-blue), .6);
   }
 }
