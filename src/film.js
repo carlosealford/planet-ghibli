@@ -1,6 +1,10 @@
 import './styles/style.css';
 import './styles/film.css';
 
+if (module.hot) {
+  module.hot.accept();
+}
+
 
 // Model, use an object for each topic of information
 const filmModel = {

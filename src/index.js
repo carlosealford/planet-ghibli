@@ -2,6 +2,10 @@ import './styles/style.css';
 import './styles/home.css';
 import heroImageLarge from './assets/images/studio-ghibli-bg.jpg'
 
+if (module.hot) {
+  module.hot.accept();
+}
+
 
 // Model, will be fetched and populated by controller
 const homeModel = {
