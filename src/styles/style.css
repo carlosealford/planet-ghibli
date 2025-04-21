@@ -77,8 +77,12 @@ font-family: 'Architects Daughter', cursive;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
+  align-items: center;
   max-width: 768px;
   padding: 8px;
+}
+.pghi-site-header-wrapper h2 {
+  font-size: 1rem;
 }
 .pghi-site-header-wrapper h3 {}
 
