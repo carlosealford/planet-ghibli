@@ -18,7 +18,7 @@ A site to explore the world Ghibli. From characters to vehicles and places.
 
 ## Screenshots
 
-
+![Planet Ghibli screenshot](screenshot.png "Screenshot")
 
 ## Color reference
 
