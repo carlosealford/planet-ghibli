@@ -12,13 +12,11 @@
 .pghi-film__hero-header > h3 {
   margin-top: 16px;
 }
-.pghi-film__hero--body {
-  padding: 16px 0;
-}
-.pghi-film__hero--video {
-  background: red;
-  width: 300px;
-  height: 200px;
+.pghi-film__hero--body {}
+.pghi-film__hero--banner {
+  background: rgb(var(--c-ucla-blue));
+  width: 100%;
+  max-width: 992px;
   margin: 32px auto 0;
   display: block;
 }
@@ -122,14 +120,15 @@
 
 /* Film Extras Cards */
 .pghi-card {
-  background-color: rgb(var(--c-ucla-blue));
+  max-width: 992px;
   border: 2px solid rgb(var(--c-ultra-violet));
   border-radius: 4px;
-  box-shadow: 0 0 12px 2px rgba(var(--c-ultra-violet),.4);
+  padding: .4rem;
+  margin: 16px auto;
+  background-color: rgb(var(--c-ucla-blue));
   color: #fff;
-  margin: 16px 8px;
-  padding: 8px;
   font-size: 18px;
+  box-shadow: 0 0 12px 2px rgba(var(--c-ultra-violet),.4);
 }
 
 .pghi-card__header {
@@ -138,22 +137,11 @@
 }
 
 /* TODO: WORKING ONT HE CARD LAYOUT */
-.pghi-card__header--profile {
-  height: 60px;
-  width: 60px;
-  border: 4px solid rgb(var(--c-almost-white));
-  border-radius: 32px;
-  background: red;
-}
-
-.pghi-card__header--title {
-  padding-left: 1rem;
-  text-align: center;
-}
+.pghi-card__header--title {}
 
 .pghi-card__body {}
 .pghi-card__body--list {
-  padding: 1rem;
+  padding: .6rem;
 }
 .pghi-card__body--list-item {}
 
@@ -176,6 +164,14 @@
   .pghi-film__extras {
     margin-top: 58px;
   }
+
+  .pghi-card__body--list {
+    padding: 1rem;
+  }
+
+  .pghi-card {
+    padding: 1rem;
+  }
 }
 @media screen and (min-width: 992px) {
   /* fil leaflet */
@@ -195,8 +191,15 @@
   .pghi-film__info {
     width: 800px;
   }
+  .pghi-film__info--list {
+    gap: 6rem;
+  }
   /* film extras */
   .pghi-film__extras {
     max-width: 660px;
+  }
+
+  .pghi-card {
+    padding: 2rem;
   }
 }
