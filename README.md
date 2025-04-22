@@ -114,4 +114,4 @@ There is a common plugin that we can add to also force reload on HTML changes, h
 - [Webpack](https://webpack.js.org/)
 
 ## License
-[GNU General Public License v3.0](License)
+[GNU General Public License v3.0](LICENSE)
