@@ -1,4 +1,4 @@
-# Planet Ghibli
+# Planet Ghibli 🌏
 
 A site to explore the world Ghibli. From characters to vehicles and places.
 
@@ -108,14 +108,10 @@ There is a common plugin that we can add to also force reload on HTML changes, h
 - [Studio Ghibli API](https://ghibliapi.vercel.app/)
 - [Webpack](https://webpack.js.org/)
 
-## License
-
-arlos E Alford](https://carlosealford.com)
-
 ## Acknowledgements
 
 - [Studio Ghibli API](https://ghibliapi.vercel.app/)
 - [Webpack](https://webpack.js.org/)
 
 ## License
-
+[GNU General Public License v3.0](License)
