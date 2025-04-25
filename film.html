@@ -64,7 +64,12 @@
     <!-- page footer -->
     <footer class="pghi-site-footer center-text">
       <p>With love by Carlos E Alford</p>
-      <p>2021 - @WebShuriken</p>
+      <p>2021-<span id="wsFooterYear"></span></p>
     </footer>
+    <script>
+      // dynamic footer date
+      const date = new Date();
+      document.querySelector('#wsFooterYear').innerText = date.getFullYear();
+    </script>
   </body>
 </html>
