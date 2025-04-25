@@ -25,6 +25,8 @@ A site to explore the world Ghibli. From characters to vehicles and places.
 
 ## Screenshots
 
+:point_right: [View Live Site](https://carlosealford.github.io/planet-ghibli/index.html) :point_left:
+
 ![Planet Ghibli screenshot](screenshot.png "Screenshot")
 
 ## Run Locally
