@@ -19,6 +19,8 @@
     "mini-css-extract-plugin": "^2.1.0",
     "nodemon": "^3.1.9",
     "style-loader": "^3.2.1",
+    "ts-loader": "^9.5.7",
+    "typescript": "^6.0.3",
     "webpack": "^5.99.6",
     "webpack-cli": "^4.7.2",
     "webpack-dev-middleware": "^7.4.2",
