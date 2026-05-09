@@ -1,10 +1,15 @@
-const path = require('path');
-const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import webpack from "webpack";
+import HtmlWebpackPlugin from "html-webpack-plugin";
 // const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 // TODO: PUT CSS INAN EXTERNAL FILE ASWELL AS INTERNAL
 
-module.exports = {
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+
+const config: webpack.Configuration = {
   entry: {
     main: [
       'webpack-hot-middleware/client?reload=true',
@@ -27,7 +32,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: "index.html",
       template: "./src/templates/index.html",
-      chunks: ["index"],
+      chunks: ["main"],
     }),
     new HtmlWebpackPlugin({
       filename: "film.html",
@@ -38,6 +43,11 @@ module.exports = {
   module: {
     // use two loaders for css and css modules
     rules: [
+      {
+        test: /\.tsx?$/,
+        use: "ts-loader",
+        exclude: /node_modules/,
+      },
       {
         test: /\.css$/i,
         use: [
@@ -50,5 +60,8 @@ module.exports = {
         type: 'asset/resource',
       }
     ]
+  },
+  resolve: {
+    extensions: [".tsx", ".ts", ".js"],
   }
 };
