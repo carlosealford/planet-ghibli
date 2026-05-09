@@ -81,7 +81,7 @@ npm run dev
 ### Version 1.1.0
 
 - [X] Redesign wireframes to improve layout of film details
-- [ ] Recreate dataflow diagram with latest API layout
+- [X] Udpate API dataflow diagram
 - [ ] Modernise `JS` codebase
 - [ ] Make sure `HTML` is modern and accessible
 - [ ] Modernise `CSS` to use latest features
