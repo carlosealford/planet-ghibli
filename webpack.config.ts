@@ -13,11 +13,11 @@ const config: webpack.Configuration = {
   entry: {
     main: [
       'webpack-hot-middleware/client?reload=true',
-      './src/index.js'
+      './src/index.ts'
     ],
     film: [
       'webpack-hot-middleware/client?reload=true',
-      './src/film.js'
+      './src/film.ts'
     ],
   },
   mode: 'development',
@@ -65,3 +65,5 @@ const config: webpack.Configuration = {
     extensions: [".tsx", ".ts", ".js"],
   }
 };
+
+export default config;
