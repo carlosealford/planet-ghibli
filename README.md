@@ -80,10 +80,13 @@ npm run dev
 
 ### Version 1.1.0
 
-- [ ] Improve modal with `dialog` element and built-in approach
+- [X] Redesign wireframes to improve layout of film details
+- [ ] Recreate dataflow diagram with latest API layout
 - [ ] Modernise `JS` codebase
 - [ ] Make sure `HTML` is modern and accessible
 - [ ] Modernise `CSS` to use latest features
+- [ ] Customise scrollbar
+- [ ] Implement loading spinner to hide text content while it render. currently you can see the text before the UI renders
 
 ## Authors
 
