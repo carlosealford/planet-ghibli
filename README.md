@@ -82,9 +82,13 @@ npm run dev
 
 - [X] Redesign wireframes to improve layout of film details
 - [X] Udpate API dataflow diagram
-- [ ] Modernise `JS` codebase
+- [x] Design `MVC` dataflow for `Home` page
+- [ ] Design `MVC` dataflow for `Film` page
+- [ ] Modernise `JS` codebase with `TypeScript`
 - [ ] Make sure `HTML` is modern and accessible
 - [ ] Modernise `CSS` to use latest features
+- [ ] Create and include favicon
+- [ ] Handle API loading error with discreat UI messages
 - [ ] Customise scrollbar
 - [ ] Implement loading spinner to hide text content while it render. currently you can see the text before the UI renders
 
