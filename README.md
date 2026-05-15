@@ -83,7 +83,7 @@ npm run dev
 - [X] Redesign wireframes to improve layout of film details
 - [X] Udpate API dataflow diagram
 - [x] Design `MVC` dataflow for `Home` page
-- [ ] Design `MVC` dataflow for `Film` page
+- [X] Design `MVC` dataflow for `Film` page
 - [ ] Modernise `JS` codebase with `TypeScript`
 - [ ] Make sure `HTML` is modern and accessible
 - [ ] Modernise `CSS` to use latest features
