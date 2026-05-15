@@ -16,48 +16,56 @@ export interface IFilm {
   species: string[];
   locations: string[];
   vehicles: string[];
-  url: string;
 }
 
-interface ISharedEntity {
-  id: string;
+export interface IPeople {
   name: string;
-  films: string | string[];
-  url: string;
-}
-
-export interface IVehicles extends ISharedEntity {
-  description: string;
-  vehicle_class: string;
-  length: string;
-  pilot: string | string[];
-}
-
-export interface ISpecies extends ISharedEntity {
-  classification: string;
-  eye_colors: string;
-  hair_colors: string;
-  people: string | string[];
-}
-
-export interface IPeople extends ISharedEntity {
   gender: string;
   eye_color: string;
   hair_color: string;
-  species: string | string[];
+  specie: string;
+  classification: string;
 }
 
-export interface ILocations extends ISharedEntity {
+export interface IVehicles {
+  name: string;
+  description: string;
+  vehicle_class: string;
+  length: string;
+  pilot: Pick<IPeople, "name">;
+}
+
+export interface ILocations {
+  name: string;
   climate: string;
   terrain: string;
   surface_water: string;
-  residents: string | string[];
+  residents: Pick<IPeople, "name">[];
 }
 
 // used by the Home Controller
-export type TFilmsView = Pick<IFilm, "id" | "title" | "image">;
+export type TFilmsList = Pick<IFilm, "id" | "title" | "image">[];
 
-export type TFetchedData = {
+export type TFilmsData = {
   status: "ok" | "error",
-  data: string | TFilmsView,
+  films?: TFilmsList,
+}
+
+// used by Films Controller
+export type TFilmURLDirectory = "films" | "people" | "species" | "locations" | "vehicles";
+
+export type TFilmData = {
+  status: "ok" | "error",
+  film?: IFilm,
+}
+
+type IFilmExtras = {
+  people: IPeople[];
+  locations: ILocations[];
+  vehicles: IVehicles[];
+}
+
+export type TFilmExtrasData = {
+  status: "ok" | "error",
+  extras?: IFilmExtras,
 }
