@@ -1,5 +1,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap');
 
+/**
+Improvements
+- [ ] scrollbar will look like a tear drop that is a light. Coming down as we scroll
+
+# Home page
+- Hero:
+  - [ ] will now display the page title and hero image as a spinning cube. spin on y-axis. pure css.
+- Layout:
+  - [ ] mobile will have 2 columns, tablets 3 columns and large 4 columns
+
+# Film page
+- Hero:
+  - [ ] the hero image (poster) will double as the trailer window.
+## film extras card
+- Layout:
+  - [ ] name for each category will go above each sections, softly blending with the background
+  - [ ] mobile will have 1 columns, tablets 2 columns and large 3 columns
+- Hover:
+  - [ ] the card will display the category name as a tier on the top left.
+  - [ ] a shadow will spread below the card and a light will sorround the card.
+
+##
+*/
 * {
   border: 0;
   box-sizing: border-box;
