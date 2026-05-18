@@ -1,12 +1,14 @@
 {
   "name": "planet-ghibli",
   "version": "1.0.0",
+  "type": "module",
   "description": "",
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config webpack.config.ts",
-    "dev": "nodemon --watch . --ext ts,tsx --exec tsx server.ts"
+    "dev": "nodemon --watch ./src --ext ts,tsx --exec tsx server.ts",
+    "type-check": "tsc --noEmit"
   },
   "keywords": [],
   "author": "",
