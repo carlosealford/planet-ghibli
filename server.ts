@@ -1,32 +1,33 @@
 import path from "path";
+import { fileURLToPath } from "node:url";
 import express from "express";
-import webpack from "webpack";
+import webpack, { type Configuration } from "webpack";
 import webpackConfig from "./webpack.config.ts";
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 const app = express();
-const compiler = webpack(webpackConfig);
+const config: Configuration = webpackConfig({}, { mode: "development" });
+const compiler = webpack(config);
 
 // make sure publicPath is available
-const webpackConfigOutput = webpackConfig.output;
-if (typeof webpackConfigOutput !== 'object') {
-  throw new Error('Webpack configuration file "output" is not setup properly or missing');
+if (!config.output || typeof config.output === "string") {
+  throw new Error('Webpack output configuration is invalid.');
 }
 
 // Attach dev middleware
 app.use(
   webpackDevMiddleware(compiler, {
-    publicPath: webpackConfigOutput.publicPath,
+    publicPath: config.output.publicPath || "/",
+    writeToDisk: false,
   })
 );
 
 // Attach hot middleware
 app.use(webpackHotMiddleware(compiler));
-
-// Static file serving fallback (if needed)
-app.use(express.static('dist'));
-
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist/index.html'));
@@ -37,6 +38,7 @@ app.get('/film', (req, res) => {
 });
 
 const PORT = 3000;
+
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
 });
