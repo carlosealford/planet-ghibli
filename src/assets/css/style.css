@@ -39,15 +39,15 @@ Improvements
   --c-primary-bright: 80, 169, 103; /* #50a967 */
   --c-primary-dark: 40, 85, 52; /* #285534 */
   --c-secondary: 79, 117, 155; /* #4f759b */
-  --c-secondary-dark: 79, 117, 155; /* #1E466D */
+  --c-secondary-dark: 30, 70, 109; /* #1E466D */
   --c-tertiary: 30, 70, 109; /* #5d5179 */
-  --main-text-color: var(--c-primary-dark);
+  --main-text-color: var(--c-secondary-dark);
   font-size: 16px;
   font-family: 'Architects Daughter', sans-serif;
 }
 
 html {
-  background: rgb(var(--c-honeydew));
+  background: rgb(var(--c-primary));
 }
 
 body {
