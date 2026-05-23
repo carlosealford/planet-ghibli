@@ -1,0 +1,214 @@
+/* home basic layout */
+.home {}
+
+
+/* ===========================================
+ * HERO SECTIONS 
+ * =========================================== */
+.hero {
+  background: rgb(var(--c-primary-dark));
+  background-image: url('../images/howls-moving-castle-bg.jpg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+  background-origin: border-box;
+  display: flex;
+  flex-flow: column wrap;
+}
+
+.hero-scene {
+  width: 100%;
+  height: 260px;
+  perspective: 800px;
+  transition: height .8s;
+}
+
+.hero-card {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  transition: transform 1s;
+  transform-style: preserve-3d;
+  animation: heroCardAnimation 4s ease-in-out 0s infinite alternate forwards;
+}
+
+@keyframes heroCardAnimation {
+  0% {
+    transform: rotateY(0);
+  }
+  35% {
+    transform: rotateY(0);
+  }
+  65% {
+    transform: rotateY(180deg);
+  }
+  100% {
+    transform: rotateY(180deg);
+  }
+}
+
+.hero-card__face {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  backface-visibility: hidden;
+}
+
+.hero-card__face--front {
+  background-color: rgb(var(--c-secondary));
+  overflow: hidden;
+}
+.hero-card__face--front img {
+  height: auto;
+  width: 100%;
+}
+
+.hero-card__face--back {
+  align-items: center;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  padding: 2rem .4rem;
+  background: rgb(var(--c-primary));
+  color: rgb(var(--c-secondary-dark));
+  transform: rotateY(180deg);
+}
+.hero-card__face--back h1 {
+  font-size: 2.2em;
+  margin-bottom: 12px;
+}
+.hero-card__face--back h2 {}
+
+/* ===========================================
+ * FILMS SECTIONS 
+ * =========================================== */
+.films {
+  display: flex;
+  flex-flow: column nowrap;
+}
+.films-header {
+  margin: 32px 0;
+}
+.films-header h2 {}
+
+.films-body {
+  padding: 0 .4rem;
+}
+
+.films-list {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  gap: .4rem;
+}
+.films-list__item {
+  max-width: 420px;
+}
+.films-list__item--box {
+  background: rgb(var(--c-cal-poly-green));
+  margin-bottom: 32px;
+  min-height: 240px;
+  transform: scale(1);
+  transition: transform .24s;
+}
+.films-list__item--box:hover {
+  cursor: pointer;
+  transform: scale(.94);
+}
+.films-list__item--box:active {
+  background: rgb(var(--c-ucla-blue));
+}
+
+.films-list__item--box > h4 {
+  background: rgba(var(--c-almost-white), .8);
+  left: 0;
+  padding: 6px 0;
+  position: absolute;
+  top: 40px;
+  width: 100%
+}
+.films-list__item--box > img{}
+
+/* Media Queries */
+@media screen and (min-width: 600px) {
+  .hero-scene {
+    height: 340px;
+    perspective: 1400px;
+  }
+  .films-list {
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+  }
+  .films-list__item{
+    width: 48%;
+  }
+}
+
+/* Tablets */
+@media screen and (min-width: 768px) {
+  /* hero section */
+  .hero-scene {
+    height: 450px;
+  }
+  .hero-card__msg h1 {
+    font-size: 2.6em;
+  }
+  /* list of films */
+  .films-header {
+    margin: 64px 0;
+  }
+  .films-list {
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+  }
+  .films-list__item {
+    width: 300px;
+  }
+}
+
+/* Large screens */
+@media screen and (min-width: 992px) {
+  .hero-scene {
+    perspective: 1800px;
+  }
+  /* hero section */
+  .hero-card__msg h1 {
+    margin-bottom: 60px;
+  }
+}
+
+/* EXTRA Large screens */
+@media screen and (min-width: 1200px) {
+  .hero-scene {
+    perspective: 2200px;
+  }
+}
+@media screen and (min-width: 1200px) and (max-height: 960px) {
+  /* hero section */
+  .hero {
+    background-size: 100%;
+  }
+}
+@media screen and (min-width: 1900px) and (min-height: 960px) {
+  /* hero section */
+  .hero {
+    background-size: 100%;
+  }
+}
+
+/* RIDICULOUSLY Large screens */
+@media screen and (min-width: 1400px) {
+  .hero-scene {
+    perspective: 3000px;
+  }
+}
+
+/* to fit the fancy background image */
+@media screen and (min-width: 992px) and (min-height: 960px) {
+  /* hero section */
+  .hero-scene {
+    height: 700px;
+  }
+}
+

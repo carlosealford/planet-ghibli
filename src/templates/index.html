@@ -27,10 +27,11 @@
       <section class="hero hero-scene">
         <div class="hero-card">
           <div class="hero-card__face hero-card__face--front">
-            <div id="pGhiHeroImg" class="pghi-hero__img"></div>
+            <!-- TODO: NEED HTML-LOADER TO process src attribute of img tag -->
+            <img src="../assets/images/studio-ghibli-bg.jpg" alt="a collection of studio ghibli characters" width="320" height="260" />
           </div>
           <div class="hero-card__face hero-card__face--back">
-            <div class="hero__msg center-text">
+            <div class="hero-card__msg center-text">
               <h1>Planet Ghibli</h1>
               <h2>Dive deeper into the Studio Ghibli Films</h2>
             </div>
@@ -41,7 +42,7 @@
       <!-- List of Ghibli films -->
       <section class="films">
         <header class="films-header center-text">
-          <h3>Films are in chronological order</h3>
+          <h2>Films are in chronological order</h2>
         </header>
         <div class="films-body">
           <ul id="FilmsList" class="films-list"></ul>
@@ -56,7 +57,6 @@
       <p>2021-<span id="wsFooterYear"></span></p>
     </footer>
 
-    <script src="main.bundle.js" charset="utf-8"></script>
     <script>
       // dynamic footer date
       const date = new Date();
