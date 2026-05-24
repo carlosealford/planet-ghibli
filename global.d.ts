@@ -48,7 +48,7 @@ export type TFilmsList = Pick<IFilm, "id" | "title" | "image">[];
 
 export type TFilmsData = {
   status: "ok" | "error",
-  films?: TFilmsList,
+  films: TFilmsList | [],
 }
 
 // used by Films Controller
