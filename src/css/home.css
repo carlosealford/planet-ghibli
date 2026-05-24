@@ -27,8 +27,8 @@
 
 .hero-card > h1 {
   position: absolute;
-  bottom: 4px;
-  padding: .2rem 0;
+  bottom: 0;
+  padding: .2rem 0 .6rem;
   width: 100%;
   color: rgb(var(--c-almost-white));
   background-color: rgba(var(--c-secondary), .6);
