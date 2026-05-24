@@ -1,5 +1,5 @@
-import './assets/css/style.css';
-import './assets/css/home.css';
+import './css/style.css';
+import './css/home.css';
 import { TFilmsList, TFilmsData, IFilm } from '../global';
 
 

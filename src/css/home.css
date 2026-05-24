@@ -1,0 +1,203 @@
+/* home basic layout */
+.home {}
+
+/* ===========================================
+ * HERO SECTIONS 
+ * =========================================== */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 260px;
+  transition: height .24s;
+}
+
+.hero-card {
+  position: relative;
+  display: flex;
+  flex-flow: column nowrap;
+  height: 100%;
+  width: 100%;
+  background: rgb(var(--c-primary-dark));
+  background-image: url('../assets/images/studio-ghibli-bg.png');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+  background-origin: border-box;
+}
+
+.hero-card > h1 {
+  position: absolute;
+  bottom: 4px;
+  padding: .2rem 0;
+  width: 100%;
+  color: rgb(var(--c-almost-white));
+  background-color: rgba(var(--c-secondary), .6);
+  font-size: 1.4rem;
+  text-shadow: 1px 1px 4px rgb(var(--c-secondary-dark));
+}
+.hero-card > h2 {
+  
+}
+
+/* ===========================================
+ * FILMS SECTIONS 
+ * =========================================== */
+.films {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 2rem;
+  padding: 2rem 0;
+}
+
+.films-header h2 {
+  font-size: 1.2rem;
+}
+
+.films-body {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  padding: 0 .8rem;
+}
+
+.films-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .8rem;
+  justify-items: center;
+  width: 100%;
+  max-width: 1600px;
+}
+
+.films-list__skeleton {
+  background-color: rgb(var(--c-secondary));
+  width: 100%;
+  height: 240px; 
+}
+
+.films-list__item,
+.films-list__skeleton {
+  max-width: 420px;
+}
+
+.films-list__item {
+  background-color: rgb(var(--c-secondary));
+}
+
+.films-list__item > img {
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 0 4px rgb(var(--c-primary-dark));
+  transform: scale(1);
+  transition: transform .24s;
+}
+.films-list__item > img:hover {
+  cursor: pointer;
+  transform: scale(.94);
+}
+.films-list__item > img:active {
+  background: rgb(var(--c-secondary-dark));
+}
+
+/* ===========================================
+ * MEDIA QUERIES
+ * =========================================== */
+ @media screen and (min-width: 460px) {
+  .hero-card {
+    background-size: 100%;
+  }
+}
+@media screen and (min-width: 600px) {
+  .hero {
+    height: 340px;
+  }
+}
+
+/* Tablets */
+@media screen and (min-width: 768px) {
+  /* hero section */
+  .hero {
+    height: 450px;
+  }
+  .hero-card {
+    background-size: auto 100%;
+  }
+  .hero-card h1 {
+    font-size: 2.6em;
+  }
+  /* list of films */
+  .films-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .films-header h2 {
+    font-size: 1.6rem;
+  }
+}
+@media screen and (min-width: 800px) {
+  /* hero section */
+  .hero-card {
+    background-size: 100%;
+  }
+}
+
+/* Large screens */
+@media screen and (min-width: 992px) {
+  /* hero section */
+  .hero-card {
+    background-size: auto 100%;
+  }
+  /* list of films */
+  .films-list {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* EXTRA Large screens */
+@media screen and (min-width: 1200px) {
+  .hero-card {
+    background-size: 100%;
+  }
+  .hero-card h1 {
+    font-size: 3rem;
+  }
+  /* list of films */
+  .films-header h2 {
+    font-size: 1.8rem;
+  }
+}
+
+/* XL Extra Large screens */
+@media screen and (min-width: 1400px) {
+  /* hero section */
+  .hero-card h1 {
+    font-size: 3.2rem;
+  }
+  /* list of films */
+  .films-list {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+/* RIDICULOUSLY large screens */
+@media screen and (min-width: 1900px) {
+  /* hero section */
+  .hero-card {
+    background-size: 100%;
+  }
+}
+
+/* hero section gets taller when screen is tall enough */
+@media screen and (min-width: 992px) and (min-height: 960px) {
+  /* hero section */
+  .hero {
+    height: 700px;
+  }
+}
+
+/* to fit hero images when the screen in wide but not tall */
+@media screen and (min-width: 992px) and (max-height: 960px) {
+  /* hero section */
+  .hero-card {
+    background-size: 100%;
+  }
+}

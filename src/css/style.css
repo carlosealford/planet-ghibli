@@ -1,4 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap');
+@font-face {
+  font-family: "Oxygen";
+  src: url("../assets/fonts/Oxygen-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
 
 /**
 Improvements
@@ -6,9 +11,9 @@ Improvements
 
 # Home page
 - Hero:
-  - [ ] will now display the page title and hero image as a spinning cube. spin on y-axis. pure css.
+  - [X] will now display the page title and hero image as a spinning cube. spin on y-axis. pure css.
 - Layout:
-  - [ ] mobile will have 2 columns, tablets 3 columns and large 4 columns
+  - [X] mobile will have 2 columns, tablets 3 columns and large 4 columns
 
 # Film page
 - Hero:
@@ -43,7 +48,7 @@ Improvements
   --c-tertiary: 30, 70, 109; /* #5d5179 */
   --main-text-color: var(--c-secondary-dark);
   font-size: 16px;
-  font-family: 'Architects Daughter', sans-serif;
+  font-family: "Oxygen", sans-serif;
 }
 
 html {
@@ -52,10 +57,12 @@ html {
 
 body {
   margin: auto;
-  height: min(100dvh, 100vh);
+  height: 100%;
+  min-height: 100vh;
   width: min(100%, 2400px);
   background-color: rgb(var(--c-almost-white));
   color: rgb(var(--main-text-color));
+  overflow: hidden;
 }
 
 a {
@@ -66,28 +73,6 @@ img {
   width: 100%;
   height: auto;
 }
-
-/**
- * Color pallete
- - Almost white: f4faf6 - 244, 250, 246
- - Honeydew: dceee1 - 220, 238, 225
- - Jade: 50a967 - 80, 169, 103
- - Cal poly green: 285534 - 40, 85, 52
- - ucla blue: 4f759b - 79, 117, 155
- - Ultra violet: 5d5179 - 93, 81, 121
-
- * Font - architects daughter
- <style>
-@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap');
-</style>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
-
-font-family: 'Architects Daughter', cursive;
-
- */
 
 /* ===========================================
  * UNIVERSAL STYLES 
@@ -103,13 +88,17 @@ font-family: 'Architects Daughter', cursive;
  * SITE HEADER
  * =========================================== */
 .site-header {
+  position: fixed;
+  top: 0;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
-  padding: 8px;
+  padding: 8px 16px;
+  width: 100%;
   background: rgb(var(--c-secondary-dark));
   color: rgb(var(--c-almost-white));
+  z-index: 999;
 }
 .site-header__title {
   font-size: 1.2rem;
@@ -140,17 +129,23 @@ font-family: 'Architects Daughter', cursive;
  * MAIN
  * =========================================== */
 main {
-  min-height: calc(100% - 106px);
+  height: 100vh;
+  overflow-y: scroll;
+  padding: 44px 0 60px;
 }
 
 /* ===========================================
  * FOOTER
  * =========================================== */
 .site-footer {
+  position: fixed;
+  bottom: 0;
   height: auto;
+  width: 100%;
   padding: 8px;
   background: rgb(var(--c-secondary-dark));
   color: rgb(var(--c-almost-white));
+  z-index: 999;
 }
 
 /* Media Queries */
