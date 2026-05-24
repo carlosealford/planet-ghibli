@@ -20,6 +20,7 @@ export interface IFilm {
 
 export interface IPeople {
   name: string;
+  age: string;
   gender: string;
   eye_color: string;
   hair_color: string;
