@@ -33,7 +33,23 @@ class HomeView {
   }
 
   bindLoadFilmPage( handler: ( id: string ) => void): void {
-    console.log("YOU NEED TO BIND THIS LISTENER");
+    this.filmsList.addEventListener("click", (e: MouseEvent) => {
+      e.preventDefault();
+
+      // ts checks and stuff
+      const target = e.target as HTMLImageElement | null;
+      if (!target) return;
+
+      // handle clicks on <li> and children
+      const li = target.closest("li[data-filmid]") as HTMLLIElement | null;
+      if (!li) return;
+
+      // make sure we have a film id
+      const id = li.dataset.filmid;
+      if (!id) return;
+
+      handler(id);
+    });
   }
 
   renderSkeleton(): void {
@@ -58,7 +74,7 @@ class HomeView {
       data.films.forEach((film) => {
         // prep the list item, with unique film id
         const li = document.createElement("li");
-        li.className = "films__list-item";
+        li.className = "films-list__item";
         li.setAttribute("data-filmid", film.id);
 
         // prep the img
@@ -93,8 +109,12 @@ class HomeController {
     this.model = model;
     this.view = view;
 
+    // link views event to film page loader
+    this.view.bindLoadFilmPage(this.loadFilmPage);
+
     // comms with API and prepare films data
     this.loadFilms();
+
     // render skeleton while waiting for films to be ready
     this.view.renderSkeleton();
   }
@@ -151,7 +171,11 @@ class HomeController {
     }, 1000);
   }
 
-  private loadFilmPage( id: string ): void {}
+  private loadFilmPage( id: string ): void {
+    // navigate to film.html with the film unique id as parameter
+    const url = 'film.html?id=' + id;
+    window.location.href = url;
+  }
 }
 
 const app = new HomeController(new HomeModel, new HomeView);
