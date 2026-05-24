@@ -28,7 +28,7 @@
   position: relative;
   transition: transform 1s;
   transform-style: preserve-3d;
-  animation: heroCardAnimation 6s ease-in-out 0s infinite alternate forwards;
+  /* animation: heroCardAnimation 6s ease-in-out 0s infinite alternate forwards; */
 }
 
 @keyframes heroCardAnimation {
