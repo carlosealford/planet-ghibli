@@ -45,6 +45,7 @@
   flex-flow: column nowrap;
   gap: 2rem;
   padding: 1rem 0;
+  width: 100%;
 }
 
 .films-header h2 {
@@ -70,7 +71,13 @@
 .films-list__skeleton {
   background-color: rgb(var(--c-secondary));
   width: 100%;
-  height: 240px; 
+  height: 240px;
+}
+.films-list__skeleton:nth-child(odd) {
+  animation: ani-skeleton 1s ease-in-out .5s infinite alternate;
+}
+.films-list__skeleton:nth-child(even) {
+  animation: ani-skeleton 1s ease-in-out 0s infinite alternate;
 }
 
 .films-list__item,
@@ -96,6 +103,27 @@
 .films-list__item > img:active {
   background: rgb(var(--c-secondary-dark));
 }
+
+/* ===========================================
+ * ANIMATIONS
+ * =========================================== */
+ @keyframes ani-skeleton {
+  0% {
+    opacity: 1;
+  }
+  25% {
+    opacity: .8;
+  }
+  50% {
+    opacity: .6;
+  }
+  75% {
+    opacity: .8;
+  }
+  100% {
+    opacity: 1;
+  }
+ }
 
 /* ===========================================
  * MEDIA QUERIES
