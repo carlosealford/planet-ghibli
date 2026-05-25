@@ -12,28 +12,28 @@ if (module.hot) {
 // Data & Logic
 class HomeModel {
   readonly baseURL: string = "https://ghibliapi.vercel.app/";
-  private films: TFilmsList = [];
+  #films: TFilmsList = [];
   // used to update the whole list
-  set filmsData( films: TFilmsList ) {
-    this.films = films;
+  set films( list: TFilmsList ) {
+    this.#films = list;
   }
-  get filmsData(): TFilmsList {
-    return this.films;
+  get films(): TFilmsList {
+    return this.#films;
   }
 }
 
 //The UI & DOM
 class HomeView {
-  private readonly filmsBody: HTMLDivElement;
-  private readonly filmsList: HTMLUListElement;
+  readonly #filmsBody: HTMLDivElement;
+  readonly #filmsList: HTMLUListElement;
   constructor() {
-    this.filmsBody = document.getElementById("filmsBody") as HTMLDivElement;
-    this.filmsList = document.createElement("ul");
-    this.filmsList.className = "films-list";
+    this.#filmsBody = document.getElementById("filmsBody") as HTMLDivElement;
+    this.#filmsList = document.createElement("ul");
+    this.#filmsList.className = "films-list";
   }
 
   bindLoadFilmPage( handler: ( id: string ) => void): void {
-    this.filmsList.addEventListener("click", (e: MouseEvent) => {
+    this.#filmsList.addEventListener("click", (e: MouseEvent) => {
       e.preventDefault();
 
       // ts checks and stuff
@@ -57,16 +57,16 @@ class HomeView {
     for (let i=0; i < 5; i++) {
       let li = document.createElement("li");
       li.className = "films-list__skeleton";
-      this.filmsList.appendChild(li);
+      this.#filmsList.appendChild(li);
     }
     // render it
-    this.filmsBody.appendChild(this.filmsList);
+    this.#filmsBody.appendChild(this.#filmsList);
   }
 
   renderView( data: TFilmsData ): void {
     // remove skeletons from list
-    while (this.filmsList.firstChild) {
-      this.filmsList.removeChild(this.filmsList.firstChild);
+    while (this.#filmsList.firstChild) {
+      this.#filmsList.removeChild(this.#filmsList.firstChild);
     }
 
     // load list will films data
@@ -85,17 +85,17 @@ class HomeView {
         li.append(img);
 
         // attach item to parent ul
-        this.filmsList.appendChild(li);
+        this.#filmsList.appendChild(li);
       });
 
       // attach ul to wrapper div
-      this.filmsBody.append(this.filmsList); 
+      this.#filmsBody.append(this.#filmsList); 
     }else{
       // render sad message
       const para = document.createElement("p");
       const node = document.createTextNode("Unable to get Films data -_-");
       para.append(node);
-      this.filmsBody.append(para);
+      this.#filmsBody.append(para);
     }
 
   }
@@ -103,26 +103,26 @@ class HomeView {
 
 // The Link
 class HomeController {
-  private model: HomeModel;
-  private view: HomeView
+  readonly #model: HomeModel;
+  readonly #view: HomeView
   constructor(model: HomeModel, view: HomeView) {
-    this.model = model;
-    this.view = view;
+    this.#model = model;
+    this.#view = view;
 
     // link views event to film page loader
-    this.view.bindLoadFilmPage(this.loadFilmPage);
+    this.#view.bindLoadFilmPage(this.loadFilmPage);
 
     // comms with API and prepare films data
     this.loadFilms();
 
     // render skeleton while waiting for films to be ready
-    this.view.renderSkeleton();
+    this.#view.renderSkeleton();
   }
 
   // deals with the fetch logic returning the result
   private async fetchData(): Promise<IFilm[] | "error"> {
     try {
-      const response = await fetch(`${this.model.baseURL}films`, {
+      const response = await fetch(`${this.#model.baseURL}films`, {
         headers: {
           'Content-Type': 'application/json'
         }
@@ -158,15 +158,15 @@ class HomeController {
       });
 
       // lets store the edited films list
-      this.model.filmsData = films;
+      this.#model.films = films;
     }
 
     // delay the render by 1 seconds so user appreciates the skeletons
     setTimeout(() => {
       // render films
-      this.view.renderView({
+      this.#view.renderView({
         status: allFilmsData !== "error" ? "ok" : "error",
-        films: this.model.filmsData,
+        films: this.#model.films,
       });
     }, 1000);
   }
