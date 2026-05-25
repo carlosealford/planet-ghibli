@@ -35,9 +35,7 @@
   font-size: 1.4rem;
   text-shadow: 1px 1px 4px rgb(var(--c-secondary-dark));
 }
-.hero-card > h2 {
-  
-}
+.hero-card > h2 {}
 
 /* ===========================================
  * FILMS SECTIONS 
@@ -46,7 +44,7 @@
   display: flex;
   flex-flow: column nowrap;
   gap: 2rem;
-  padding: 2rem 0;
+  padding: 1rem 0;
 }
 
 .films-header h2 {
