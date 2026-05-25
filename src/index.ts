@@ -1,6 +1,10 @@
 import './css/style.css';
 import './css/home.css';
-import { TFilmsList, TFilmsData, IFilm } from '../global';
+import { 
+  IAPIFilm, 
+  TFilmsList, 
+  TFilmsData
+} from '../global';
 
 
 // Webpack features to enable live code updates without full page reload.
@@ -120,7 +124,7 @@ class HomeController {
   }
 
   // deals with the fetch logic returning the result
-  private async fetchData(): Promise<IFilm[] | "error"> {
+  private async fetchData(): Promise<IAPIFilm[] | "error"> {
     try {
       const response = await fetch(`${this.#model.baseURL}films`, {
         headers: {
@@ -134,7 +138,7 @@ class HomeController {
       }
 
       // lets collect our film data
-      const data: IFilm[] = await response.json();
+      const data: IAPIFilm[] = await response.json();
 
       return data;
     } catch (error) {
