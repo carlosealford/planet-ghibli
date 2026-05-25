@@ -1,4 +1,10 @@
 .film {}
+.film h2 {
+  font-size: 1.2rem;
+}
+.film h3 {
+  font-size: 1rem;
+}
 
 /* ===========================================
  * HERO SECTION
@@ -8,7 +14,7 @@
   flex-flow: column nowrap;
   align-items: center;
   gap: 1rem;
-  padding: 1rem 0;
+  padding-top: 1rem;
   background: rgb(var(--main-box-bg-color));
 }
 .film-hero__header {
@@ -34,22 +40,24 @@
  * LEAFLET
  * =========================================== */
 .film-leaflet {
-  padding: 1rem 0;
   width: 100%;
   max-width: 1600px;
 }
 
-.film-leaflet > header {}
+.film-leaflet > header {
+  padding: 1rem 0 0;
+}
 .film-leaflet > header > h2 {}
 
 .film-leaflet__body {
   padding: 1rem .8rem;
-  font-size: 1.2rem;
 }
 
-.leaflet-desc {}
+.leaflet-desc {
+  padding-bottom: 1rem;
+}
 
-.leaflet-list{
+.leaflet-list {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: repeat(4, 1fr);
@@ -65,20 +73,46 @@
 /* ===========================================
  * FILM EXTRA
  * =========================================== */
-.film-extras {}
-.film-extras > header {}
-.film-extras__body {}
+.film-extras {
+  width: 100%;
+  max-width: 1600px;
+}
 
-.extras-card {}
-.extras-card-title {}
+.film-extras header {}
+
+.film-extras__body {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  padding: 1rem .8rem;
+}
+
+.extras-card {
+  border-radius: 8px;
+  border-left: 3px solid rgb(var(--c-primary-dark));
+  padding: .6rem;
+  background-color: rgba(var(--c-almost-white), .4);
+  box-shadow: 0 0 4px rgba(var(--c-primary-dark), .2);
+}
+.extras-card-title {
+  padding-bottom: .4rem;
+}
 .extras-card-list {}
-.extras-card-list__item {}
+.extras-card-list__item {
+  font-weight: bold;
+}
+.extras-card-list__item span {
+  font-weight: 400;
+}
 
-.film-extras-people {}
+.film-extras__no-data {
+  padding-top: 1rem;
+  color: rgb(var(--c-tertiary));
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+}
 
-.film-extras-vehicles {}
-
-.film-extras-locations {}
 /* ===========================================
  * MEDIA QUERIES
  * =========================================== */
@@ -87,52 +121,45 @@
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
   }
+  .film-extras__body {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 /* Tablets */
 @media screen and (min-width: 768px) {
+  .film h2 {
+    font-size: 1.6rem;
+  }
   /* film hero */
   .film-hero__header > h1 {
     font-size: 2.2rem;
   }
-  /* leaflet */
+  /* extras card */
+  .extras-card {
+    padding: .8rem;
+  }
+}
+@media screen and (min-width: 992px) {
   .leaflet-list{
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: 1fr;
   }
-}
-@media screen and (min-width: 992px) {
-
+  .film-extras__body {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 /* EXTRA Large screens */
 @media screen and (min-width: 1200px) {
+  .film h2 {
+    font-size: 1.8rem;
+  }
   /* film hero */
   .film-hero__header > h1 {
     font-size: 2.4rem;
   }
-}
-
-/* XL Extra Large screens */
-@media screen and (min-width: 1400px) {
-
-}
-
-/* RIDICULOUSLY large screens */
-@media screen and (min-width: 1900px) {
-
-}
-
-/* hero section gets taller when screen is tall enough */
-@media screen and (min-width: 992px) and (min-height: 960px) {
-
-}
-
-/* to fit hero images when the screen in wide but not tall */
-@media screen and (min-width: 992px) and (max-height: 960px) {
-
-}
-
-@media screen and (min-width: 1200px) and (max-height: 960px) {
-
+  .film-extras__body {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
