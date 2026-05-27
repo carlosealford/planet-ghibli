@@ -36,6 +36,10 @@ class HomeView {
     this.#filmsList.className = "films-list";
   }
 
+  /**
+   * Creates event handler for the film posters
+   * @param handler ( id: string ) => void
+   */
   bindLoadFilmPage( handler: ( id: string ) => void): void {
     this.#filmsList.addEventListener("click", (e: MouseEvent) => {
       e.preventDefault();
@@ -56,6 +60,9 @@ class HomeView {
     });
   }
 
+  /**
+   * Renders page skeletons
+   */
   renderSkeleton(): void {
     // create four list items no images required
     for (let i=0; i < 5; i++) {
@@ -67,6 +74,10 @@ class HomeView {
     this.#filmsBody.appendChild(this.#filmsList);
   }
 
+  /**
+   * Renders the frontend view
+   * @param data TFilmsData
+   */
   renderView( data: TFilmsData ): void {
     // remove skeletons from list
     while (this.#filmsList.firstChild) {
@@ -123,7 +134,10 @@ class HomeController {
     this.#view.renderSkeleton();
   }
 
-  // deals with the fetch logic returning the result
+  /**
+   * Uses API to get all films data from database
+   * @returns Promise<IAPIFilm[] | "error">
+   */
   private async fetchData(): Promise<IAPIFilm[] | "error"> {
     try {
       const response = await fetch(`${this.#model.baseURL}films`, {
@@ -147,6 +161,9 @@ class HomeController {
     }
   }
 
+  /**
+   * prepares films data and stores it in model.films
+   */
   private async loadFilms() {
     const allFilmsData = await this.fetchData();
     let films: TFilmsList = [];
@@ -175,6 +192,10 @@ class HomeController {
     }, 1000);
   }
 
+  /**
+   * Dynamically loads film page with film id in url
+   * @param id string
+   */
   private loadFilmPage( id: string ): void {
     // navigate to film.html with the film unique id as parameter
     const url = 'film.html?id=' + id;
