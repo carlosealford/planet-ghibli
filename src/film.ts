@@ -20,67 +20,6 @@ import {
 } from '../global';
 
 
-/*
-// 1. THE MODEL - Data & Logic
-class TodoModel {
-  constructor() {
-    this.todos = ['Learn JavaScript', 'Build MVC App'];
-  }
-
-  addTodo(text) {
-    this.todos.push(text);
-    // This is where you'd trigger a callback to update the UI
-  }
-}
-
-// 2. THE VIEW - The UI & DOM
-class TodoView {
-  constructor() {
-    this.app = document.getElementById('root');
-    this.input = document.querySelector('#todo-input');
-    this.submitBtn = document.querySelector('#add-btn');
-  }
-
-  render(todos) {
-    // Logic to clear the list and redraw it based on the Model
-    console.log("Current Todos:", todos);
-  }
-
-  bindAddTodo(handler) {
-    this.submitBtn.addEventListener('click', () => {
-      if (this.input.value) {
-        handler(this.input.value);
-        this.input.value = '';
-      }
-    });
-  }
-}
-
-// 3. THE CONTROLLER - The Link
-class TodoController {
-  constructor(model, view) {
-    this.model = model;
-    this.view = view;
-
-    // Link the View's event to the Model's logic
-    this.view.bindAddTodo(this.handleAddTodo);
-    
-    // Initial draw
-    this.view.render(this.model.todos);
-  }
-
-  handleAddTodo = (todoText) => {
-    this.model.addTodo(todoText);
-    this.view.render(this.model.todos);
-  }
-}
-
-// 4. INITIALIZATION
-const app = new TodoController(new TodoModel(), new TodoView());
-*/
-
-console.log('YOU ARE IN FILM PAGE')
-
 // Data & Logic
 class FilmModel {
   readonly #baseURL: string = "https://ghibliapi.vercel.app/";
@@ -132,24 +71,159 @@ class FilmModel {
 
 // UI & DOM
 class FilmView {
-  constructor() {}
+  readonly people: HTMLDivElement;
+  constructor() {
+    this.people = document.getElementById("FilmPeople") as HTMLDivElement;
+  }
 
   renderSkeleton(): void {
     console.log("TODO: RENDER SKELETONS")
   }
 
-  render( film: TFilmData ): void {
-    console.log("TODO RENDER FILM");
-    // TODO: WORKING ON THIS ONE RIGHT NOW.
+  render( filmData: TFilmData ): void {
+    try {
+      // when error do something else
+      if (filmData.status === "error") throw new Error("No data from API");
+
+      const film = filmData.film;
+      // DOM parents
+      const FilmTitle = document.getElementById("FilmHeroTitle") as HTMLDivElement;
+      const filmBanner = document.getElementById("FilmHeroBanner") as HTMLImageElement;
+
+      // TODO: WORKING ON THIS PARTS ADING THE STUFF TO IT
+      const filmDescription = document.getElementById("LeafletDesc") as HTMLDivElement;
+      const filmReleaseDate = document.getElementById("FilmReleaseDate") as HTMLLIElement;
+      const filmRunningTime = document.getElementById("FilmRunningTime") as HTMLLIElement;
+      const filmDirector = document.getElementById("FilmDirector") as HTMLLIElement;
+      const filmProducer = document.getElementById("FilmProducer") as HTMLLIElement;
+
+      // film title
+      const h1 = document.createElement("h1");
+      const title = document.createTextNode(film.title);
+      const span = document.createElement("span");
+      const original_title = document.createTextNode(film.original_title);
+      h1.appendChild(title);
+      span.appendChild(original_title);
+      h1.appendChild(span);
+      FilmTitle.appendChild(h1);
+      
+      // film banner
+      const img = document.createElement("img");
+      img.src = film.movie_banner;
+      img.alt = `poster of the film ${film.title}`;
+      filmBanner.appendChild(img);
+
+      // film description
+      const p = document.createElement("p");
+      const desc = document.createTextNode(film.description);
+      p.appendChild(desc);
+      filmDescription.appendChild(p);
+
+      // film description list
+      filmReleaseDate.textContent = film.release_date;
+      filmRunningTime.textContent = film.running_time;
+      filmDirector.textContent = film.director;
+      filmProducer.textContent = film.producer;
+
+    } catch (error) {
+      console.error(error);
+      // TODO: RENDER SOMETHING TO DEAL WITH ERROR
+    }
   }
 
-  renderFilmExtras( extras: TFilmExtrasData ): void {
-    console.log("TODO: RENDER FILM EXTRAS");
+  renderFilmExtras( extrasData: TFilmExtrasData ): void {
+    console.log("TODO: RENDER FILM EXTRAS: ", extrasData);
+    try {
+      // when error do something else
+      if (extrasData.status === "error") throw new Error("Issue with all the extras");
+
+      // NOTES:
+      // string = SPECIES NAME REQUIRES FILTER THROUGH ALL THE SPECIES AND MATCH THEIR URLs TO GRAB THE NAMES
+      // string[] = RESIDENTS REQUIRES TO FILTER THROUGH THE LIST OF PEOPLE AND MATCH THEIR URLs TO GRAB THEIR NAMES
+
+      // sort out people
+      const people: HTMLDivElement = this.createPeopleCards(extrasData.extras.people);
+      console.log("PEOPLE: ", people)
+      this.people.appendChild(people);
+
+    } catch(err) {
+      console.error(err);
+      // TODO: do something with this error, cant have an empty interface
+    }
   }
 
-  // createPeopleCards( people: IPeople[] ): HTMLDivElement {
-  //   console.log("TODO: RENDER PEOPLE CARDS")
-  // }
+  /**
+   * creates a text node
+   * @param text string
+   * @returns Text reprends text node
+   */
+  textNode(text: string): Text {
+    return document.createTextNode(text);
+  }
+
+  /**
+   * Creates the list element for each element in the film extra cards
+   * @param title string
+   * @param text string
+   * @returns HTMLLiElement
+   */
+  liElement(title: string, text: string, classname?: string): HTMLLIElement {
+    // Lets keep it DRY right here
+    const li = document.createElement("li");
+
+    // add classname when supplied
+    if (classname !== undefined && classname.length !== 0) li.setAttribute("class", classname);
+
+    // span is the value from the title key
+    const textSpan = document.createElement("span");
+    textSpan.appendChild(this.textNode(text));
+    li.appendChild(this.textNode(title));
+    li.appendChild(textSpan);
+
+    return li;
+  }
+
+  createPeopleCards( people: IPeople[] ): HTMLDivElement {
+    console.log("TODO: RENDER PEOPLE CARDS")
+    //.film-extras__no-data
+    const div = document.createElement("div");
+    div.setAttribute("class", "film-extras__body");
+
+    // we will introduce some data regardless
+    if (people.length > 0) {
+      people.forEach(person => {
+        const article = document.createElement("article");
+        article.setAttribute("class", "extras-card");
+
+        const h3 = document.createElement("h3");
+        h3.setAttribute("class", "extras-card-title")
+        h3.appendChild(this.textNode(person.name));
+
+        const ul = document.createElement("ul");
+        const cname = "extras-card-list__item"
+        ul.setAttribute("class", "extras-card-list")
+        ul.appendChild(this.liElement("Age: ", person.age, cname));
+        ul.appendChild(this.liElement("Gender: ", person.gender, cname));
+        ul.appendChild(this.liElement("Eye colour: ", person.eye_color, cname));
+        ul.appendChild(this.liElement("Hair colour: ", person.hair_color, cname));
+        // TODO: SEE NOTES
+        // ul.appendChild(this.liElement("Species", person.species, cname));
+
+        article.appendChild(h3);
+        article.appendChild(ul);
+
+        // all goes in here
+        div.appendChild(article);
+      });
+    }else{
+      const p = document.createElement("p");
+      const text = document.createTextNode("NO DATA FOR PEOPLE");
+      p.appendChild(text);
+      div.appendChild(p);
+    }
+
+    return div;
+  }
 
   // createVehicleCards( vehicles: IVehicles[] ): HTMLDivElement {
   //   console.log("TODO: RENDER VEHICLES CARDS")
@@ -178,11 +252,11 @@ class FilmController {
     // TODO: skeleton render
     // this.#view.renderSkeleton();
 
-    // TODO: load film details
+    // load film details
     this.loadFilm();
 
     // TODO: load film extras
-    // this.loadFilmExtras();
+    this.loadFilmExtras();
   }
 
   /**
