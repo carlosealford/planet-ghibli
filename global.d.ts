@@ -50,6 +50,14 @@ export interface IAPILocations extends APICommonFields {
   residents: string[];
 }
 
+// we only use it to get the name of species
+export interface IAPISpecies extends APICommonFields {
+  classification: string;
+  eye_color: string;
+  hair_color: string;
+  people: string;
+}
+
 // the API categories available
 export type TFilmURLDirectory = "films" | "people" | "species" | "locations" | "vehicles";
 
@@ -127,13 +135,14 @@ export type TAPIResponse = {
   people: IAPIPeople[];
   vehicles: IAPIVehicles[];
   locations: IAPILocations[];
+  species: IAPISpecies[];
 }
 
 // passed on to the view for rendering Extras.
 // "error" unable to fetch any extra
 // "partial" unable to fetch at least 1 extra
 // "ok" all extras fetched responsably
-export type TMissingFilmExtras = Array<"people" | "vehicles" | "locations" | "">
+export type TMissingFilmExtras = Array<"people" | "vehicles" | "locations" | "species" | "">
 export type TFilmExtrasData = {
   status: TFectchStatus,
   missing: TMissingFilmExtras,
