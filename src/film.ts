@@ -5,6 +5,7 @@ import {
   IAPIPeople,
   IAPILocations,
   IAPIVehicles,
+  IAPISpecies,
   TAPIResponse,
   IFilm,
   IPeople,
@@ -28,6 +29,7 @@ class FilmModel {
   #people: IPeople[] = [];
   #locations: ILocations[] = [];
   #vehicles: IVehicles[] = [];
+  #residents: string[] = [];
 
   get baseURL() {
     return this.#baseURL;
@@ -72,8 +74,12 @@ class FilmModel {
 // UI & DOM
 class FilmView {
   readonly people: HTMLDivElement;
+  readonly vehicles: HTMLDivElement;
+  readonly locations: HTMLDivElement;
   constructor() {
     this.people = document.getElementById("FilmPeople") as HTMLDivElement;
+    this.vehicles = document.getElementById("FilmVehicles") as HTMLDivElement;
+    this.locations = document.getElementById("FilmLocations") as HTMLDivElement;
   }
 
   renderSkeleton(): void {
@@ -132,19 +138,21 @@ class FilmView {
   }
 
   renderFilmExtras( extrasData: TFilmExtrasData ): void {
-    console.log("TODO: RENDER FILM EXTRAS: ", extrasData);
     try {
       // when error do something else
       if (extrasData.status === "error") throw new Error("Issue with all the extras");
 
-      // NOTES:
-      // string = SPECIES NAME REQUIRES FILTER THROUGH ALL THE SPECIES AND MATCH THEIR URLs TO GRAB THE NAMES
-      // string[] = RESIDENTS REQUIRES TO FILTER THROUGH THE LIST OF PEOPLE AND MATCH THEIR URLs TO GRAB THEIR NAMES
-
       // sort out people
       const people: HTMLDivElement = this.createPeopleCards(extrasData.extras.people);
-      console.log("PEOPLE: ", people)
       this.people.appendChild(people);
+
+      // sort out vehicles
+      const vehicles: HTMLDivElement = this.createVehicleCards(extrasData.extras.vehicles);
+      this.vehicles.appendChild(vehicles);
+
+      // sort out locations
+      const locations: HTMLDivElement = this.createLocationsCards(extrasData.extras.locations);
+      this.locations.appendChild(locations);
 
     } catch(err) {
       console.error(err);
@@ -184,7 +192,6 @@ class FilmView {
   }
 
   createPeopleCards( people: IPeople[] ): HTMLDivElement {
-    console.log("TODO: RENDER PEOPLE CARDS")
     //.film-extras__no-data
     const div = document.createElement("div");
     div.setAttribute("class", "film-extras__body");
@@ -206,8 +213,7 @@ class FilmView {
         ul.appendChild(this.liElement("Gender: ", person.gender, cname));
         ul.appendChild(this.liElement("Eye colour: ", person.eye_color, cname));
         ul.appendChild(this.liElement("Hair colour: ", person.hair_color, cname));
-        // TODO: SEE NOTES
-        // ul.appendChild(this.liElement("Species", person.species, cname));
+        ul.appendChild(this.liElement("Species: ", person.species, cname));
 
         article.appendChild(h3);
         article.appendChild(ul);
@@ -217,7 +223,8 @@ class FilmView {
       });
     }else{
       const p = document.createElement("p");
-      const text = document.createTextNode("NO DATA FOR PEOPLE");
+      p.setAttribute("class", "film-extras__no-data");
+      const text = document.createTextNode("No data for People");
       p.appendChild(text);
       div.appendChild(p);
     }
@@ -225,13 +232,85 @@ class FilmView {
     return div;
   }
 
-  // createVehicleCards( vehicles: IVehicles[] ): HTMLDivElement {
-  //   console.log("TODO: RENDER VEHICLES CARDS")
-  // }
+  createVehicleCards( vehicles: IVehicles[] ): HTMLDivElement {
+    //.film-extras__no-data
+    const div = document.createElement("div");
+    div.setAttribute("class", "film-extras__body");
 
-  // createLocationsCards( locations: ILocations[] ): HTMLDivElement {
-  //   console.log("TODO: RENDER LOCATIONS")
-  // }
+    // we will introduce some data regardless
+    if (vehicles.length > 0) {
+      vehicles.forEach(vehicle => {
+        const article = document.createElement("article");
+        article.setAttribute("class", "extras-card");
+
+        const h3 = document.createElement("h3");
+        h3.setAttribute("class", "extras-card-title")
+        h3.appendChild(this.textNode(vehicle.name));
+
+        const ul = document.createElement("ul");
+        const cname = "extras-card-list__item"
+        ul.setAttribute("class", "extras-card-list")
+        ul.appendChild(this.liElement("Class: ", vehicle.vehicle_class, cname));
+        ul.appendChild(this.liElement("Length: ", vehicle.length, cname));
+        ul.appendChild(this.liElement("Pilot: ", vehicle.pilot, cname));
+        ul.appendChild(this.liElement("Description: ", vehicle.description, cname));
+
+        article.appendChild(h3);
+        article.appendChild(ul);
+
+        // all goes in here
+        div.appendChild(article);
+      });
+    }else{
+      const p = document.createElement("p");
+      p.setAttribute("class", "film-extras__no-data");
+      const text = document.createTextNode("No data for Vehicles");
+      p.appendChild(text);
+      div.appendChild(p);
+    }
+
+    return div;
+  }
+
+  createLocationsCards( locations: ILocations[] ): HTMLDivElement {
+    //.film-extras__no-data
+    const div = document.createElement("div");
+    div.setAttribute("class", "film-extras__body");
+
+    // we will introduce some data regardless
+    if (locations.length > 0) {
+      locations.forEach(location => {
+        const article = document.createElement("article");
+        article.setAttribute("class", "extras-card");
+
+        const h3 = document.createElement("h3");
+        h3.setAttribute("class", "extras-card-title")
+        h3.appendChild(this.textNode(location.name));
+
+        const ul = document.createElement("ul");
+        const cname = "extras-card-list__item"
+        ul.setAttribute("class", "extras-card-list")
+        ul.appendChild(this.liElement("Climate: ", location.climate, cname));
+        ul.appendChild(this.liElement("Terrain: ", location.terrain, cname));
+        ul.appendChild(this.liElement("Surface water: ", location.surface_water, cname));
+        ul.appendChild(this.liElement("Residents: ", location.residents.join(", "), cname));
+
+        article.appendChild(h3);
+        article.appendChild(ul);
+
+        // all goes in here
+        div.appendChild(article);
+      });
+    }else{
+      const p = document.createElement("p");
+      p.setAttribute("class", "film-extras__no-data");
+      const text = document.createTextNode("No data for Locations");
+      p.appendChild(text);
+      div.appendChild(p);
+    }
+
+    return div;
+  }
 }
 
 
@@ -352,15 +431,38 @@ class FilmController {
     // tracks missing extras as strings
     const missingExtras: TMissingFilmExtras = []
 
-    // fetch all people
+    // PEOPLE
     const peopleData = await this.fetchData("people");
+    // species will only server to get the persons species name
+    const speciesData = await this.fetchData("species");
     let people: IPeople[];
 
     // are we able to dig deeper into people
     if (peopleData !== "error") {
       people = peopleData.filter((person) => {
         // check for matching film id
-        return person.films.some((url) => url === filmURLID);
+
+        return person.films.some((url) => {
+          // lets populate the species property. url === filmURLID
+          if (url === filmURLID) {
+            // give it a default value in case API does not provide one
+            person.species = "unavailable";
+
+            if (speciesData !== "error") {
+              // search species for match
+              for (let specie of speciesData) {
+                // we just need the name of specie
+                if (specie.url === person.species) {
+                  person.species = specie.name;
+                  break;
+                }
+              }
+            }
+
+            // if we hit this, we found a person for this movie
+            return true;
+          }
+        });
       });
 
       // store the people
@@ -369,8 +471,7 @@ class FilmController {
       missingExtras.push("people");
     };
 
-
-    // fetch all vehicles
+    // VEHICLES
     const vehiclesData = await this.fetchData("vehicles");
     let vehicles: IVehicles[];
 
@@ -378,7 +479,32 @@ class FilmController {
     if (vehiclesData !== "error") {
       vehicles = vehiclesData.filter((vehicle) => {
         // check for matching film id
-        return vehicle.films.some((url) => url === filmURLID );
+        return vehicle.films.some((url) => {
+          
+          // find vehicles in this film
+          if (url === filmURLID) {
+            // default value for pilot in case we cant find their name
+
+            if (peopleData !== "error") {
+              const pilot = vehicle.pilot;
+
+              // default incase we cant find it amongst the people
+              vehicle.pilot = "not available";
+
+              // traverse all people looking for pilot
+              for (let person of peopleData) {
+                if (person.url === pilot) {
+                  vehicle.pilot = person.name;
+                  break;
+                }
+              }
+            }
+
+            // we found pilot
+            return true;
+          }
+
+        });
       });
 
       // store the vehicles
@@ -387,15 +513,44 @@ class FilmController {
       missingExtras.push("vehicles");
     };
 
-    // fetch all locations
+    // LOCATIONS
     const locationsData = await this.fetchData("locations");
     let locations: ILocations[];
-
+    
     // are we able to dig deeper into locations
     if (locationsData !== "error") {
       locations = locationsData.filter((location) => {
-        // check for matching film id
-        return location.films.some((url) => url === filmURLID );
+        
+        // populate with locations from this film
+        return location.films.some((url) => {
+          if (url === filmURLID) {
+            
+            // create list of residents on this film
+            if (peopleData !== "error") {
+
+              // go through each resident and match them to a person
+              location.residents.forEach((resident, index) => {
+
+                // reset the list of residents to zero
+                if (index === 0) location.residents = [];
+                // look through the people for a match
+                for (let person of peopleData) {
+                  if (person.url.includes(resident)) {
+                    location.residents.push(person.name);
+                    // no need to keep looking through people
+                    break;
+                  }
+                }
+
+              });
+
+            }
+
+            // a location for film found, add to list
+            return true;
+
+          }
+        });
       });
 
       // store the locations
