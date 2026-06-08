@@ -71,6 +71,7 @@ class FilmModel {
 }
 
 // UI & DOM
+type TSkeleton = "film" | "extras" | "all";
 class FilmView {
   readonly people: HTMLDivElement;
   readonly vehicles: HTMLDivElement;
@@ -103,35 +104,41 @@ class FilmView {
   /**
    * Add a skeleton to the DOM
    */
-  renderSkeleton(): void {
-    // DOM parents
-    const FilmTitle = document.getElementById("FilmHeroTitle") as HTMLDivElement;
-    const filmBanner = document.getElementById("FilmHeroBanner") as HTMLImageElement;
-    const filmDescription = document.getElementById("LeafletDesc") as HTMLDivElement;
+  renderSkeleton(section: TSkeleton = "all"): void {
+    // film details section
+    if (section === "all" || section === "film") {
+      // DOM parents
+      const FilmTitle = document.getElementById("FilmHeroTitle") as HTMLDivElement;
+      const filmBanner = document.getElementById("FilmHeroBanner") as HTMLImageElement;
+      const filmDescription = document.getElementById("LeafletDesc") as HTMLDivElement;
 
-    // film title
-    const title = document.createElement("div");
-    title.setAttribute("class", "skeleton skeleton__title");
-    FilmTitle.appendChild(title);
+      // film title
+      const title = document.createElement("div");
+      title.setAttribute("class", "skeleton skeleton__title");
+      FilmTitle.appendChild(title);
 
-    // film banner
-    const img = document.createElement("div");
-    img.setAttribute("class", "skeleton skeleton__banner")
-    filmBanner.appendChild(img);
+      // film banner
+      const img = document.createElement("div");
+      img.setAttribute("class", "skeleton skeleton__banner")
+      filmBanner.appendChild(img);
 
-    // film description
-    const p = document.createElement("div");
-    p.setAttribute("class", "skeleton skeleton__description")
-    filmDescription.appendChild(p);
+      // film description
+      const p = document.createElement("div");
+      p.setAttribute("class", "skeleton skeleton__description")
+      filmDescription.appendChild(p);
+    }
 
-    // extras skeleton
-    this.people.appendChild(this.createSkeletonClass());
-
-    // vehicles skeleton
-    this.vehicles.appendChild(this.createSkeletonClass());
-
-    // locations skeleton
-    this.locations.appendChild(this.createSkeletonClass());
+    // extras sections
+    if (section === "all" || section === "extras") {
+      // people skeleton
+      this.people.appendChild(this.createSkeletonClass());
+      
+      // vehicles skeleton
+      this.vehicles.appendChild(this.createSkeletonClass());
+      
+      // locations skeleton
+      this.locations.appendChild(this.createSkeletonClass());
+    }
   }
 
   render( filmData: TFilmData ): void {
@@ -141,7 +148,7 @@ class FilmView {
 
       const film = filmData.film;
       // DOM parents
-      const FilmTitle = document.getElementById("FilmHeroTitle") as HTMLDivElement;
+      const filmTitle = document.getElementById("FilmHeroTitle") as HTMLDivElement;
       const filmBanner = document.getElementById("FilmHeroBanner") as HTMLImageElement;
       const filmDescription = document.getElementById("LeafletDesc") as HTMLDivElement;
       const filmReleaseDate = document.getElementById("FilmReleaseDate") as HTMLLIElement;
@@ -157,18 +164,27 @@ class FilmView {
       h1.appendChild(title);
       span.appendChild(original_title);
       h1.appendChild(span);
-      FilmTitle.appendChild(h1);
+      // we must remove the skeleton first
+      const filmTitleChild = filmTitle.lastChild;
+      if (filmTitleChild) filmTitle.removeChild(filmTitleChild);
+      filmTitle.appendChild(h1);
       
       // film banner
       const img = document.createElement("img");
       img.src = film.movie_banner;
       img.alt = `poster of the film ${film.title}`;
+      // we must remove the skeleton first
+      const filmBannerChild = filmBanner.lastChild;
+      if (filmBannerChild) filmBanner.removeChild(filmBannerChild);
       filmBanner.appendChild(img);
 
       // film description
       const p = document.createElement("p");
       const desc = document.createTextNode(film.description);
       p.appendChild(desc);
+      // we must remove the skeleton first
+      const filmDescriptionChild = filmDescription.lastChild;
+      if (filmDescriptionChild) filmDescription.removeChild(filmDescriptionChild);
       filmDescription.appendChild(p);
 
       // film description list
@@ -194,19 +210,29 @@ class FilmView {
 
       // sort out people
       const people: HTMLDivElement = this.createPeopleCards(extrasData.extras.people);
+      // we must remove the skeleton first
+      const peopleChild = this.people.lastChild;
+      if (peopleChild) this.people.removeChild(peopleChild);
       this.people.appendChild(people);
 
       // sort out vehicles
       const vehicles: HTMLDivElement = this.createVehicleCards(extrasData.extras.vehicles);
+      // we must remove the skeleton first
+      const vehicleChild = this.vehicles.lastChild;
+      if (vehicleChild) this.vehicles.removeChild(vehicleChild);
       this.vehicles.appendChild(vehicles);
 
       // sort out locations
       const locations: HTMLDivElement = this.createLocationsCards(extrasData.extras.locations);
+      // we must remove the skeleton first
+      const locationsChild = this.locations.lastChild;
+      if (locationsChild) this.locations.removeChild(locationsChild);
       this.locations.appendChild(locations);
 
     } catch(err) {
+      // to stop user feeling empty we load the skeleton as a distraction
       console.error(err);
-      // TODO: do something with this error, cant have an empty interface
+      this.renderSkeleton("extras");
     }
   }
 
@@ -379,13 +405,13 @@ class FilmController {
     }
 
     // TODO: skeleton render
-    // this.#view.renderSkeleton();
+    this.#view.renderSkeleton();
 
     // load film details
-    // this.loadFilm();
+    this.loadFilm();
 
     // load film extras
-    // this.loadFilmExtras();
+    this.loadFilmExtras();
   }
 
   /**
