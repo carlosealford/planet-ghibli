@@ -5,29 +5,6 @@
   font-style: normal;
 }
 
-/**
-Improvements
-- [ ] scrollbar will look like a tear drop that is a light. Coming down as we scroll
-
-# Home page
-- Hero:
-  - [X] will now display the page title and hero image as a spinning cube. spin on y-axis. pure css.
-- Layout:
-  - [X] mobile will have 2 columns, tablets 3 columns and large 4 columns
-
-# Film page
-- Hero:
-  - [ ] the hero image (poster) will double as the trailer window.
-## film extras card
-- Layout:
-  - [ ] name for each category will go above each sections, softly blending with the background
-  - [ ] mobile will have 1 columns, tablets 2 columns and large 3 columns
-- Hover:
-  - [ ] the card will display the category name as a tier on the top left.
-  - [ ] a shadow will spread below the card and a light will sorround the card.
-
-##
-*/
 * {
   border: 0;
   box-sizing: border-box;
@@ -45,14 +22,14 @@ Improvements
   --c-primary-dark: 40, 85, 52; /* #285534 */
   --c-secondary: 79, 117, 155; /* #4f759b */
   --c-secondary-dark: 30, 70, 109; /* #1E466D */
-  --c-tertiary: 30, 70, 109; /* #5d5179 */
+  --c-tertiary: 93, 81, 121; /* #5d5179 */
   --main-text-color: var(--c-secondary-dark);
   font-size: 16px;
   font-family: "Oxygen", sans-serif;
 }
 
 html {
-  background: rgb(var(--c-primary));
+  background: rgb(var(--c-secondary-dark));
 }
 
 body {
@@ -60,9 +37,8 @@ body {
   height: 100%;
   min-height: 100vh;
   width: min(100%, 2400px);
-  background-color: rgb(var(--c-almost-white));
+  background-color: rgb(var(--c-primary));
   color: rgb(var(--main-text-color));
-  overflow: hidden;
 }
 
 a {
@@ -96,6 +72,7 @@ img {
   align-items: center;
   padding: 8px 16px;
   width: 100%;
+  max-width: 2400px;
   background: rgb(var(--c-secondary-dark));
   color: rgb(var(--c-almost-white));
   z-index: 999;
@@ -129,9 +106,14 @@ img {
  * MAIN
  * =========================================== */
 main {
-  height: 100vh;
-  overflow-y: scroll;
-  padding: 44px 0 60px;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  gap: 1rem;
+  padding-top: 44px;
+  padding-bottom: calc(60px + 1rem);
+  width: 100%;
+  max-width: 2400px;
 }
 
 /* ===========================================
@@ -142,6 +124,7 @@ main {
   bottom: 0;
   height: auto;
   width: 100%;
+  max-width: 2400px;
   padding: 8px;
   background: rgb(var(--c-secondary-dark));
   color: rgb(var(--c-almost-white));
@@ -152,12 +135,5 @@ main {
 @media screen and (min-width: 1400px) {
   .site-header {
     justify-content: space-evenly;
-  }
-}
-
-/* Large screens */
-@media screen and (min-width: 2400px) {
-  body {
-    box-shadow: 0 0 24px rgba(var(--c-secondary-dark), .6);
   }
 }
