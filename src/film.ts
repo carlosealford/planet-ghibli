@@ -29,7 +29,6 @@ class FilmModel {
   #people: IPeople[] = [];
   #locations: ILocations[] = [];
   #vehicles: IVehicles[] = [];
-  #residents: string[] = [];
 
   get baseURL() {
     return this.#baseURL;
@@ -82,8 +81,57 @@ class FilmView {
     this.locations = document.getElementById("FilmLocations") as HTMLDivElement;
   }
 
+  /**
+   * Keeps it DRY by creating the skeleton articles
+   * @returns HTMLDivElement
+   */
+  createSkeletonClass(): HTMLDivElement {
+    let div = document.createElement("div");
+    div.setAttribute("class", "film-extras__body");
+
+    // skeleton class
+    const cname = "extras-card skeleton";
+
+    for (let i=0; i<4; i++) {
+      let article = document.createElement("article");
+      article.setAttribute("class", cname);
+      div.appendChild(article);
+    }
+    return div;
+  }
+
+  /**
+   * Add a skeleton to the DOM
+   */
   renderSkeleton(): void {
-    console.log("TODO: RENDER SKELETONS")
+    // DOM parents
+    const FilmTitle = document.getElementById("FilmHeroTitle") as HTMLDivElement;
+    const filmBanner = document.getElementById("FilmHeroBanner") as HTMLImageElement;
+    const filmDescription = document.getElementById("LeafletDesc") as HTMLDivElement;
+
+    // film title
+    const title = document.createElement("div");
+    title.setAttribute("class", "skeleton skeleton__title");
+    FilmTitle.appendChild(title);
+
+    // film banner
+    const img = document.createElement("div");
+    img.setAttribute("class", "skeleton skeleton__banner")
+    filmBanner.appendChild(img);
+
+    // film description
+    const p = document.createElement("div");
+    p.setAttribute("class", "skeleton skeleton__description")
+    filmDescription.appendChild(p);
+
+    // extras skeleton
+    this.people.appendChild(this.createSkeletonClass());
+
+    // vehicles skeleton
+    this.vehicles.appendChild(this.createSkeletonClass());
+
+    // locations skeleton
+    this.locations.appendChild(this.createSkeletonClass());
   }
 
   render( filmData: TFilmData ): void {
@@ -95,8 +143,6 @@ class FilmView {
       // DOM parents
       const FilmTitle = document.getElementById("FilmHeroTitle") as HTMLDivElement;
       const filmBanner = document.getElementById("FilmHeroBanner") as HTMLImageElement;
-
-      // TODO: WORKING ON THIS PARTS ADING THE STUFF TO IT
       const filmDescription = document.getElementById("LeafletDesc") as HTMLDivElement;
       const filmReleaseDate = document.getElementById("FilmReleaseDate") as HTMLLIElement;
       const filmRunningTime = document.getElementById("FilmRunningTime") as HTMLLIElement;
@@ -137,6 +183,10 @@ class FilmView {
     }
   }
 
+  /**
+   * Creates the elements for the extras details and add them to the DOM
+   * @param extrasData TFilmExtrasData
+   */
   renderFilmExtras( extrasData: TFilmExtrasData ): void {
     try {
       // when error do something else
@@ -332,10 +382,10 @@ class FilmController {
     // this.#view.renderSkeleton();
 
     // load film details
-    this.loadFilm();
+    // this.loadFilm();
 
-    // TODO: load film extras
-    this.loadFilmExtras();
+    // load film extras
+    // this.loadFilmExtras();
   }
 
   /**
