@@ -1,22 +1,14 @@
 import './css/style.css';
 import './css/film.css';
 import {
-  IAPIFilm,
-  IAPIPeople,
-  IAPILocations,
-  IAPIVehicles,
-  IAPISpecies,
   TAPIResponse,
   IFilm,
   IPeople,
   ILocations,
   IVehicles,
-  TFilmURLDirectory,
   TFilmData,
   TFilmExtrasData,
-  IFilmExtras,
   TMissingFilmExtras,
-  TFectchStatus,
   TFilm
 } from '../global';
 
@@ -381,7 +373,6 @@ class FilmView {
   }
 }
 
-
 // Link
 class FilmController {
   readonly #model: FilmModel;
@@ -396,7 +387,7 @@ class FilmController {
       this.#model.id = filmID;
     }
 
-    // TODO: skeleton render
+    // skeleton render
     this.#view.renderSkeleton();
 
     // load film details
