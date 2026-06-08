@@ -28,7 +28,7 @@ interface APICommonFields {
   url: string;
 }
 
-export interface IAPIPeople extends APICommonFields {
+interface IAPIPeople extends APICommonFields {
   gender: string;
   age: string;
   eye_color: string;
@@ -36,14 +36,14 @@ export interface IAPIPeople extends APICommonFields {
   species: string;
 }
 
-export interface IAPIVehicles extends APICommonFields {
+interface IAPIVehicles extends APICommonFields {
   description: string;
   vehicle_class: string;
   length: string;
   pilot: string;
 }
 
-export interface IAPILocations extends APICommonFields {
+interface IAPILocations extends APICommonFields {
   climate: string;
   terrain: string;
   surface_water: string;
@@ -51,15 +51,12 @@ export interface IAPILocations extends APICommonFields {
 }
 
 // we only use it to get the name of species
-export interface IAPISpecies extends APICommonFields {
+interface IAPISpecies extends APICommonFields {
   classification: string;
   eye_color: string;
   hair_color: string;
   people: string;
 }
-
-// the API categories available
-export type TFilmURLDirectory = "films" | "people" | "species" | "locations" | "vehicles";
 
 /* ===========================================
  * HOME PAGE CONTROLLER
@@ -75,7 +72,7 @@ export type TFilmsData = {
 /* ===========================================
  * FILM PAGE CONTROLLER 
  * =========================================== */
-export type TFectchStatus = "ok" | "partial" | "error";
+type TFectchStatus = "ok" | "partial" | "error";
 
 // API data type for storing film in model
 export interface IFilm {
