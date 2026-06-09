@@ -26,6 +26,10 @@
   --main-text-color: var(--c-secondary-dark);
   font-size: 16px;
   font-family: "Oxygen", sans-serif;
+  scroll-behavior: smooth;
+  scrollbar-gutter: stable;
+  scrollbar-width: 8px;
+  scrollbar-color: rgb(var(--c-primary-bright)) rgb(var(--c-secondary-dark));
 }
 
 html {
