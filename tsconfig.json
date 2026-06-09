@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist",
+    "noImplicitAny": true,
+    "target": "ES2017",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "jsx": "react-jsx",
+    "strict": true,
+    "allowJs": true,
+    "esModuleInterop": true,
+    "types": ["node", "webpack-env"]
+  },
+  "include": ["src/**/*", "webpack.config.ts", "declarations.d.ts"],
+  "exclude": ["node_modules", "dist"],
+}

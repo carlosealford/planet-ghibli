@@ -3,73 +3,111 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="studio ghibli fan side made using free api out of curiousity">
+    <meta name="author" content="Carlos E Alford">
     <title>Planet Ghibli</title>
+    <link
+      rel="preload"
+      href="../assets/fonts/Oxygen-Regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
   </head>
   <body>
-    <!-- page header navigation -->
-    <header class="pghi-site-header">
-      <div class="pghi-site-header-wrapper center-block">
-        <h2>Planet Ghibli</h2>
-        <nav class="pghi-site-nav">
-          <ul>
-            <li class="pghi-site-nav__item">
-              <a href="index.html">HOME</a>
-            </li>
-          </ul>
-        </nav>
-      </div>
+
+    <!-- page header and navigation -->
+    <header class="site-header">
+      <p class="site-header__title">Planet Ghibli</p>
+      <nav class="main-nav">
+        <ul class="main-nav-list">
+          <li class="main-nav-list__item active">
+            <a href="index.html">HOME</a>
+          </li>
+        </ul>
+      </nav>
     </header>
 
     <!-- all content for selected film -->
-    <main id="pGhibliFilm">
+    <main id="pGhibliFilm" class="film">
+
       <!-- hero with title, original title and film trailer -->
-      <section class="pghi-film__hero">
-        <header id="pGhiFilmHeroHeader" class="pghi-film__hero-header center-text"></header>
-        <div class="pghi-film__hero--body">
-          <div id="pGhiFilmHeroBanner" class="pghi-film__hero--banner"></div>
-        </div>
+      <section class="film-hero">
+        <header>
+          <div id="FilmHeroTitle" class="film-hero__header center-text"></div>
+        </header>
+        <div id="FilmHeroBanner" class="film-hero__body"></div>
       </section>
+
       <!-- leaflet part which talks about the film in more detail -->
-      <section class="pghi-film__leaflet">
+      <section class="film-leaflet">
         <!-- films description -->
-        <div class="pghi-film__desc">
-          <h3 class="center-text">Film Description</h3>
-          <div id="pGhiFilmDescBody" class="pghi-film__desc-body"></div>
-        </div>
+        <header>
+          <h2 class="center-text">Film Description</h2>
+        </header>
         <!-- film general information -->
-        <div class="pghi-film__info">
-          <ul id="pGhiFilmInfoList" class="pghi-film__info--list">
-            <li class="pghi-film__info--list-item">Release Date: <span></span></li>
-            <li class="pghi-film__info--list-item">Running Time: <span></span></li>
-            <li class="pghi-film__info--list-item">Director: <span></span></li>
-            <li class="pghi-film__info--list-item">Producer: <span></span></li>
+        <div class="film-leaflet__body">
+          <div id="LeafletDesc" class="leaflet-desc"></div>
+          <ul class="leaflet-list">
+            <!-- DELETE -->
+            <li class="leaflet-list__item">Release Date: <span id="FilmReleaseDate"></span></li>
+            <li class="leaflet-list__item">Running Time: <span id="FilmRunningTime"></span></li>
+            <li class="leaflet-list__item">Director: <span id="FilmDirector"></span></li>
+            <li class="leaflet-list__item">Producer: <span id="FilmProducer"></span></li>
           </ul>
         </div>
-        <!-- film extras, like vehicles and characters -->
-        <div class="pghi-film__extras center-text">
-          <a class="pghi-film__extras-popup-btn" href="#pGhiExtrasPeoplePopup">People</a>
-          <a class="pghi-film__extras-popup-btn" href="#pGhiExtrasSpeciesPopup">Species</a>
-          <a class="pghi-film__extras-popup-btn" href="#pGhiExtrasLocationsPopup">Locations</a>
-          <a class="pghi-film__extras-popup-btn" href="#pGhiExtrasVehiclesPopup">Vehicles</a>
-        </div>
       </section>
+
+      <!-- PEOPLE -->
+      <section id="FilmPeople" class="film-extras">
+        <header>
+          <h2 class="center-text">People</h2>
+        </header>
+      </section>
+
+      <!-- VEHICLES -->
+      <section id="FilmVehicles" class="film-extras">
+        <header>
+          <h2 class="center-text">Vehicles</h2>
+        </header>
+      </section>
+
+      <!-- LOCATIONS -->
+      <section id="FilmLocations" class="film-extras">
+        <header>
+          <h2 class="center-text">Locations</h2>
+        </header>
+      </section>      
+
     </main>
-    <!-- Modals -->
-    <div id="pghiExtras" class="pghi-extras">
-      <div id="pGhiExtrasPeoplePopup" class="pghi-extras__overlay"></div>
-      <div id="pGhiExtrasSpeciesPopup" class="pghi-extras__overlay"></div>
-      <div id="pGhiExtrasLocationsPopup" class="pghi-extras__overlay"></div>
-      <div id="pGhiExtrasVehiclesPopup" class="pghi-extras__overlay"></div>
-    </div>
+
     <!-- page footer -->
-    <footer class="pghi-site-footer center-text">
-      <p>With love by Carlos E Alford</p>
+    <footer class="site-footer center-text">
+      <p>Made with curiousity by Carlos E Alford</p>
       <p>2021-<span id="wsFooterYear"></span></p>
     </footer>
+
     <script>
       // dynamic footer date
       const date = new Date();
       document.querySelector('#wsFooterYear').innerText = date.getFullYear();
     </script>
   </body>
+<!--
+         _____________             ____________________________________________________
+      /\\             /                                                              \\|
+     /  \\           /                                                                \|
+    /    \\         /                                                                  |
+   /      \\______ / __          __  _        _____ _                _ _                     
+  /       //      /  \ \        / / | |      / ____| |              (_) |             
+ /       //      /    \ \  /\  / /__| |__   | (___ | |__  _   _ _ __ _| | _____ _ __  
+/       / ------       \ \/  \/ / _ \ '_ \   \___ \| '_ \| | | | '__| | |/ / _ \ '_ \ 
+\       \ ------        \  /\  /  __/ |_) |  ____) | | | | |_| | |  | |   <  __/ | | |
+ \       \\      \       \/  \/ \___|_.__/  |_____/|_| |_|\__,_|_|  |_|_|\_\___|_| |_|
+  \       \\______\                2010
+   \      //       \                    
+    \    //         \                  
+     \  //           \             https://carlosealford.com/                         /|
+      \//_____________\            __________________________________________________//|
+-->
 </html>

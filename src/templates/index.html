@@ -3,52 +3,77 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- <link rel="stylesheet" href="planet.css"> -->
+    <meta name="description" content="studio ghibli fan side made using free api out of curiousity">
+    <meta name="author" content="Carlos E Alford">
     <title>Planet Ghibli</title>
+    <link
+      rel="preload"
+      href="../assets/fonts/Oxygen-Regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
   </head>
   <body>
-    <!-- page header navigation -->
-    <header class="pghi-site-header">
-      <div class="pghi-site-header-wrapper center-block">
-        <h2>Planet Ghibli</h2>
-        <nav class="pghi-site-nav">
-          <ul>
-            <li class="pghi-site-nav__item active">
-              <a href="#">HOME</a>
-            </li>
-          </ul>
-        </nav>
-      </div>
+
+    <!-- page header and navigation -->
+    <header class="site-header">
+      <p class="site-header__title">Planet Ghibli</p>
+      <nav class="main-nav">
+        <ul class="main-nav-list">
+          <li class="main-nav-list__item active">
+            <a href="#">HOME</a>
+          </li>
+        </ul>
+      </nav>
     </header>
 
-    <main id="pGhibliHome" class="pghi-home">
+    <main id="pGhibliHome" class="home">
+
       <!-- Hero image -->
-      <section class="pghi-hero__box">
-        <div id="pGhiHeroImg" class="pghi-hero__img"></div>
-        <div class="pghi-hero__msg center-text">
-          <h1>Planet Ghibli</h1>
-          <h2>Dive deeper into the Studio Ghibli Films</h2>
+      <section class="hero">
+        <div class="hero-card center-text">
+          <h1>"May all your bacon burn"</h1>
         </div>
       </section>
 
       <!-- List of Ghibli films -->
-      <section class="pghi-films">
-        <header class="pghi-films__header center-text">
-          <h3>Films are in chronological order</h3>
+      <section class="films">
+        <header class="films-header center-text">
+          <h2>Films are in chronological order</h2>
         </header>
-          <div id="pGhiFilmsListBox" class="pghi-films__list-box"></div>
+        <div id="filmsBody" class="films-body"></div>
       </section>
+
     </main>
+
     <!-- page footer -->
-    <footer class="pghi-site-footer center-text">
-      <p>With love by Carlos E Alford</p>
+    <footer class="site-footer center-text">
+      <p>Made with curiousity by Carlos E Alford</p>
       <p>2021-<span id="wsFooterYear"></span></p>
     </footer>
-    <script src="main.bundle.js" charset="utf-8"></script>
+
     <script>
       // dynamic footer date
       const date = new Date();
       document.querySelector('#wsFooterYear').innerText = date.getFullYear();
     </script>
   </body>
+<!--
+         _____________             ____________________________________________________
+      /\\             /                                                              \\|
+     /  \\           /                                                                \|
+    /    \\         /                                                                  |
+   /      \\______ / __          __  _        _____ _                _ _                     
+  /       //      /  \ \        / / | |      / ____| |              (_) |             
+ /       //      /    \ \  /\  / /__| |__   | (___ | |__  _   _ _ __ _| | _____ _ __  
+/       / ------       \ \/  \/ / _ \ '_ \   \___ \| '_ \| | | | '__| | |/ / _ \ '_ \ 
+\       \ ------        \  /\  /  __/ |_) |  ____) | | | | |_| | |  | |   <  __/ | | |
+ \       \\      \       \/  \/ \___|_.__/  |_____/|_| |_|\__,_|_|  |_|_|\_\___|_| |_|
+  \       \\______\                2010
+   \      //       \                    
+    \    //         \                  
+     \  //           \             https://carlosealford.com/                         /|
+      \//_____________\            __________________________________________________//|
+-->
 </html>
