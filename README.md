@@ -12,6 +12,8 @@ Used it as a chance to practice the `MVC`, Model, View, and Controller approach 
 
 ![Planet Ghibli screenshot](screenshot.png "Screenshot")
 
+![Planet Ghibli film page screenshot](screenshot-b.png "ScreenshotB")
+
 ## Tech stack
 
 **Frontend:**
@@ -84,13 +86,13 @@ npm run dev
 - [X] Udpate API dataflow diagram
 - [x] Design `MVC` dataflow for `Home` page
 - [X] Design `MVC` dataflow for `Film` page
-- [ ] Modernise `JS` codebase with `TypeScript`
-- [ ] Make sure `HTML` is modern and accessible
-- [ ] Modernise `CSS` to use latest features
-- [ ] Create and include favicon
-- [ ] Handle API loading error with discreat UI messages
-- [ ] Customise scrollbar
-- [ ] Implement loading spinner to hide text content while it render. currently you can see the text before the UI renders
+- [X] Modernise `JS` codebase with `TypeScript`
+- [X] Make sure `HTML` is modern and accessible
+- [X] Modernise `CSS` to use latest features
+- [X] Create and include favicon
+- [X] Handle API loading error with discreat UI messages
+- [X] Customise scrollbar
+- [X] Implement loading spinner to hide text content while it render. currently you can see the text before the UI renders
 
 ## Authors
 
